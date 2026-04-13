@@ -7,7 +7,7 @@ public abstract class Monster implements Comparable<Monster> {
 	private String name;
 	private String description;
 	private Role role;
-	private Role originalRole; // For confusion card
+	private Role originalRole;
 	private int energy;
 	private int position;
 	private boolean frozen;
