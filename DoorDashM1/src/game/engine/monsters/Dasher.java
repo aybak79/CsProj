@@ -18,4 +18,10 @@ public class Dasher extends Monster {
 		this.momentumTurns = momentumTurns;
 	}
 
+	@Override
+	public void executePowerupEffect(Monster opponentMonster) {
+		this.setMomentumTurns(3);
+	}
+
+
 }
