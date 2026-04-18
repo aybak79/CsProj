@@ -8,6 +8,7 @@ import game.engine.cells.*;
 import game.engine.exceptions.InvalidMoveException;
 import game.engine.monsters.Monster;
 
+
 public class Board {
 	private Cell[][] boardCells;
 	private static ArrayList<Monster> stationedMonsters; 
@@ -96,7 +97,7 @@ public class Board {
 		if (opponentMonster.getConfusionTurns() > 0) {
 			opponentMonster.decrementConfusion();
 		}
-		getCell(currentMonster.getPosition()).onLand();
+		getCell(currentMonster.getPosition()).onLand(currentMonster, opponentMonster);
 		this.updateMonsterPositions(currentMonster, opponentMonster);
 	}
 

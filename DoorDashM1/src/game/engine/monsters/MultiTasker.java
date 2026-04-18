@@ -35,7 +35,7 @@ public class MultiTasker extends Monster {
 	@Override
 	public void setEnergy(int energy){
 		int change = energy - this.getEnergy();
-		super.setEnergy(this.getEnergy() + change+2000);
+		super.setEnergy(this.getEnergy() + change+200);
 	}
 
 }
