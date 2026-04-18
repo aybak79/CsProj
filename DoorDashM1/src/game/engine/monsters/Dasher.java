@@ -23,5 +23,16 @@ public class Dasher extends Monster {
 		this.setMomentumTurns(3);
 	}
 
+	@Override
+	public void move(int distance){
+		if(momentumTurns >0){
+			super.move(distance*3);
+			momentumTurns--;
+		} else{
+			super.move(distance *2);
+		}
+	}
+
+	
 
 }
