@@ -1,11 +1,14 @@
 package game.engine;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import game.engine.dataloader.DataLoader;
 import game.engine.monsters.*;
+import game.engine.exceptions.*;
+
 
 public class Game {
 	private Board board;
@@ -22,6 +25,12 @@ public class Game {
 		this.player = selectRandomMonsterByRole(playerRole);
 		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
 		this.current = player;
+
+		ArrayList<Monster> stationedMonsters = new ArrayList<>(allMonsters);
+		stationedMonsters.remove(player);
+		stationedMonsters.remove(opponent);
+		Board.setStationedMonsters(stationedMonsters);
+    	board.initializeBoard(DataLoader.readCells());
 	}
 	
 	public Board getBoard() {
@@ -55,5 +64,50 @@ public class Game {
 	    		.findFirst()
 	    		.orElse(null);
 	}
+
+	private Monster getCurrentOpponent(){
+		return current == player ? opponent : player;
+	}
+
+	private int rollDice(){
+		return (int)(Math.random() * 6) + 1;// Returns a random number between 1 and 6
+	}
+
+	public void usePowerup() throws OutOfEnergyException{
+		if(current.getEnergy() < Constants.POWERUP_COST) {
+			throw new OutOfEnergyException("Not enough energy to use power-up.");
+		}
+		current.executePowerupEffect(getCurrentOpponent());
+ 		current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
+	}
+
+	private void switchTurn(){
+		current = getCurrentOpponent();
+	}
+
+	private boolean checkWinCondition(Monster monster){
+		if ((monster.getPosition()==99)&&monster.getEnergy()>=1000){
+			return true;
+		}
+		return false;
+	}
+
+	public void playTurn() throws InvalidMoveException{
+		if(current.isFrozen()){
+			current.setFrozen(false);
+		} else{
+			int roll = rollDice();
+			board.moveMonster(current, roll, getCurrentOpponent());
+		}
+		switchTurn();
+	}
 	
+	public Monster getWinner(){
+		if(checkWinCondition(player)) {
+			return player;
+		} else if(checkWinCondition(opponent)) {
+			return opponent;
+		}
+		return null; // No winner yet
+	}
 }
