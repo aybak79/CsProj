@@ -70,7 +70,7 @@ public class Game {
 	}
 
 	private int rollDice(){
-		return (int)(Math.random() * 6) + 1;// Returns a random number between 1 and 6
+		return (int)(Math.random() * 6) +1;// Returns a random number between 1 and 6
 	}
 
 	public void usePowerup() throws OutOfEnergyException{
