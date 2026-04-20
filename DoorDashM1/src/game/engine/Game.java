@@ -26,12 +26,9 @@ public class Game {
 		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
 		this.current = player;
 
-		ArrayList<Monster> stationedMonsters = new ArrayList<>(allMonsters);
-		stationedMonsters.remove(player);
-		stationedMonsters.remove(opponent);
 		allMonsters.remove(player);
 		allMonsters.remove(opponent);
-		Board.setStationedMonsters(stationedMonsters);
+		Board.setStationedMonsters(allMonsters);
     	board.initializeBoard(DataLoader.readCells());
 	}
 	
@@ -111,5 +108,9 @@ public class Game {
 			return opponent;
 		}
 		return null; // No winner yet
+	}
+
+	public static void main(String[] args) throws IOException {
+		Game game = new Game(Role.SCARER);
 	}
 }
