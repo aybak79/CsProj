@@ -24,8 +24,8 @@ public class Board {
 	}
 
 	private int[] indexToRowCol(int index) {
-		index = index % 100;
-		int row = Constants.BOARD_ROWS - 1 - (index / Constants.BOARD_ROWS);
+		index = index % Constants.BOARD_SIZE;
+		int row = (index / Constants.BOARD_ROWS);
 		int col = index % Constants.BOARD_COLS;
 		if(row % 2 == 1) {
 			col = Constants.BOARD_COLS - 1 - col;
@@ -45,6 +45,7 @@ public class Board {
 		for(int i = 0; i < Constants.MONSTER_CELL_INDICES.length; i++) {
 			int monsterIndex = Constants.MONSTER_CELL_INDICES[i];
 			Monster monster = stationedMonsters.get(i);
+			monster.setPosition(monsterIndex);
 			setCell(monsterIndex, new MonsterCell(monster.getName(),monster));
 		}
 
@@ -93,9 +94,6 @@ public class Board {
 		currentMonster.move(roll);
 		if(currentMonster.getConfusionTurns() > 0) {
 			currentMonster.decrementConfusion();
-		}
-		if (opponentMonster.getConfusionTurns() > 0) {
-			opponentMonster.decrementConfusion();
 		}
 		getCell(currentMonster.getPosition()).onLand(currentMonster, opponentMonster);
 		this.updateMonsterPositions(currentMonster, opponentMonster);

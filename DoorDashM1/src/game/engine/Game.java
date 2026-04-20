@@ -29,6 +29,8 @@ public class Game {
 		ArrayList<Monster> stationedMonsters = new ArrayList<>(allMonsters);
 		stationedMonsters.remove(player);
 		stationedMonsters.remove(opponent);
+		allMonsters.remove(player);
+		allMonsters.remove(opponent);
 		Board.setStationedMonsters(stationedMonsters);
     	board.initializeBoard(DataLoader.readCells());
 	}
@@ -78,7 +80,7 @@ public class Game {
 			throw new OutOfEnergyException("Not enough energy to use power-up.");
 		}
 		current.executePowerupEffect(getCurrentOpponent());
- 		current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
+		current.alterEnergy(- Constants.POWERUP_COST);
 	}
 
 	private void switchTurn(){
