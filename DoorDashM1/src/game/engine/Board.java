@@ -7,7 +7,8 @@ import game.engine.cards.Card;
 import game.engine.cells.*;
 import game.engine.exceptions.InvalidMoveException;
 import game.engine.monsters.Monster;
-
+import game.engine.dataloader.DataLoader;
+import java.io.IOException;
 
 public class Board {
 	private Cell[][] boardCells;
@@ -44,9 +45,11 @@ public class Board {
 
 		for(int i = 0; i < Constants.MONSTER_CELL_INDICES.length; i++) {
 			int monsterIndex = Constants.MONSTER_CELL_INDICES[i];
-			Monster monster = stationedMonsters.get(i);
-			monster.setPosition(monsterIndex);
-			setCell(monsterIndex, new MonsterCell(monster.getName(),monster));
+			if (!stationedMonsters.isEmpty()){
+				Monster monster = stationedMonsters.get(i);
+				monster.setPosition(monsterIndex);
+				setCell(monsterIndex, new MonsterCell(monster.getName(),monster));
+			}
 		}
 
 		for(int i = 0; i < Constants.CARD_CELL_INDICES.length; i++) {
@@ -141,4 +144,15 @@ public class Board {
 	public static void setCards(ArrayList<Card> cards) {
 		Board.cards = cards;
 	}
+
+	public static void main(String[] args) throws IOException {
+		Board board = new Board(DataLoader.readCards());
+		Board.setStationedMonsters(DataLoader.readMonsters());
+		board.initializeBoard(DataLoader.readCells());
+		for (int i = 0; i < Constants.BOARD_SIZE; i++) {
+			Cell cell = board.getCell(i);
+			System.out.println("Index: " + i + ", Cell Type: " + cell.getClass().getSimpleName());
+		}
+	}
+
 }
