@@ -12,9 +12,9 @@ import game.engine.cells.*;
 import game.engine.monsters.*;
 
 public class DataLoader {
-	private static final String CARDS_FILE_NAME = "CsProj/DoorDashM1/Cards.csv";
-	private static final String CELLS_FILE_NAME = "CsProj/DoorDashM1/Cells.csv";
-	private static final String MONSTERS_FILE_NAME = "CsProj/DoorDashM1/Monsters.csv";
+	private static final String CARDS_FILE_NAME = "CsProj/DoorDashM1/cards.csv";
+	private static final String CELLS_FILE_NAME = "CsProj/DoorDashM1/cells.csv";
+	private static final String MONSTERS_FILE_NAME = "CsProj/DoorDashM1/monsters.csv";
 	
 	@SuppressWarnings("resource")
 	public static ArrayList<Card> readCards() throws IOException {
