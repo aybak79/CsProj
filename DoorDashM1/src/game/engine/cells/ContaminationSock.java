@@ -24,8 +24,8 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
 	
 	@Override
 	public void transport(Monster monster) {
-		monster.move(this.getEffect());
-		monster.alterEnergy(Constants.SLIP_PENALTY);
+		monster.setPosition(monster.getPosition() + getEffect());
+		monster.alterEnergy(-Constants.SLIP_PENALTY);
 	}
 }
 
