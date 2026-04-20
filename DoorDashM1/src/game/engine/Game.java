@@ -109,8 +109,4 @@ public class Game {
 		}
 		return null; // No winner yet
 	}
-
-	public static void main(String[] args) throws IOException {
-		Game game = new Game(Role.SCARER);
-	}
 }

@@ -37,21 +37,30 @@ public class DoorCell extends Cell implements CanisterModifier {
 	public void onLand(Monster landingMonster, Monster opponentMonster) {
     	super.onLand(landingMonster, opponentMonster);
     	if (!isActivated()) {
-        	int energyChange = landingMonster.getRole() == getRole() ? getEnergy() : -getEnergy();
-        	modifyCanisterEnergy(landingMonster, energyChange);
-        	for (Monster stationed : Board.getStationedMonsters()) {
-            	if (stationed.getRole() == landingMonster.getRole()) {
-                	modifyCanisterEnergy(stationed, energyChange);
-            	}
-        	}
-        	if (energyChange != 0 && !landingMonster.isShielded()) {
-            	setActivated(true);
-        	}
+        	int energyChange = this.getEnergy();
+			if(!landingMonster.isShielded()) {
+				for(Monster stationed : Board.getStationedMonsters()) {
+					if (stationed.getRole() == landingMonster.getRole()) {
+						this.modifyCanisterEnergy(stationed, energyChange);
+					}
+				}
+				this.setActivated(true);
+			} else {
+				if(landingMonster.getRole() == this.getRole()) {
+					for(Monster stationed : Board.getStationedMonsters()) {
+						if (stationed.getRole() == landingMonster.getRole()) {
+							this.modifyCanisterEnergy(stationed, energyChange);
+						}
+					}
+					this.setActivated(true);
+				}
+			}
+			this.modifyCanisterEnergy(landingMonster, energyChange);
     	}
 	}
 	@Override
 	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
-		if (monster.getRole() == getRole()) {
+		if (monster.getRole() == this.getRole()) {
 			monster.alterEnergy(canisterValue);
 		} else {
 			monster.alterEnergy(-canisterValue);

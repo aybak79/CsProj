@@ -13,7 +13,6 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
 	@Override
 	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
     	monster.alterEnergy(canisterValue);
-		
 	}
 
 	@Override
@@ -23,6 +22,10 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
     	modifyCanisterEnergy(landingMonster, Constants.SLIP_PENALTY);
 	}
 	
-
+	@Override
+	public void transport(Monster monster) {
+		monster.move(this.getEffect());
+		monster.alterEnergy(Constants.SLIP_PENALTY);
+	}
 }
 
