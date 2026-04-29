@@ -2,7 +2,6 @@ package game.engine;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import game.engine.cards.Card;
 import game.engine.cells.*;
 import game.engine.exceptions.InvalidMoveException;
