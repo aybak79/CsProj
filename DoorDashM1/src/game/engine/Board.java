@@ -79,9 +79,7 @@ public class Board {
 	}
 
 	public static Card drawCard() {
-		if(Board.cards.isEmpty()) {
-			Board.reloadCards();
-		}
+		if(Board.cards.isEmpty()) Board.reloadCards();
 		return Board.cards.remove(0);
 	}
 
