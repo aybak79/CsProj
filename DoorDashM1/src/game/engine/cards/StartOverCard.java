@@ -7,7 +7,6 @@ public class StartOverCard extends Card {
 		super(name, description, rarity, lucky);
 	}
 
-
 	@Override
 	public void performAction(Monster monster, Monster opponent) {
 		if(this.isLucky()) opponent.setPosition(0);

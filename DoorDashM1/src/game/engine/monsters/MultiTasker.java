@@ -18,6 +18,7 @@ public class MultiTasker extends Monster {
 		this.normalSpeedTurns = normalSpeedTurns;
 	}
 	
+	@Override
 	public void executePowerupEffect(Monster opponentMonster) {
 		this.setNormalSpeedTurns(2);
 	}
@@ -35,7 +36,7 @@ public class MultiTasker extends Monster {
 	@Override
 	public void setEnergy(int energy){
 		int change = energy - this.getEnergy();
-		super.setEnergy(this.getEnergy() + change+200);
+		super.setEnergy(this.getEnergy() + change + 200);
 	}
 
 }

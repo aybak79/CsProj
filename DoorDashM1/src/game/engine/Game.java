@@ -19,13 +19,10 @@ public class Game {
 	
 	public Game(Role playerRole) throws IOException {
 		this.board = new Board(DataLoader.readCards());
-		
 		this.allMonsters = DataLoader.readMonsters();
-		
 		this.player = selectRandomMonsterByRole(playerRole);
 		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
 		this.current = player;
-
 		allMonsters.remove(player);
 		allMonsters.remove(opponent);
 		Board.setStationedMonsters(allMonsters);
@@ -65,7 +62,7 @@ public class Game {
 	}
 
 	private Monster getCurrentOpponent(){
-		return current == player ? opponent : player;
+		return this.current == this.player ? this.opponent : this.player;
 	}
 
 	private int rollDice(){
@@ -73,40 +70,34 @@ public class Game {
 	}
 
 	public void usePowerup() throws OutOfEnergyException{
-		if(current.getEnergy() < Constants.POWERUP_COST) {
+		if(this.current.getEnergy() < Constants.POWERUP_COST) {
 			throw new OutOfEnergyException("Not enough energy to use power-up.");
 		}
-		current.executePowerupEffect(getCurrentOpponent());
-		current.alterEnergy(- Constants.POWERUP_COST);
+		this.current.executePowerupEffect(getCurrentOpponent());
+		this.current.setEnergy(this.current.getEnergy() - Constants.POWERUP_COST);
 	}
 
 	private void switchTurn(){
-		current = getCurrentOpponent();
+		this.current = getCurrentOpponent();
 	}
 
 	private boolean checkWinCondition(Monster monster){
-		if ((monster.getPosition()==99)&&monster.getEnergy()>=1000){
-			return true;
-		}
-		return false;
+		return monster.getPosition() == Constants.WINNING_POSITION && monster.getEnergy() >= Constants.WINNING_ENERGY;
 	}
 
 	public void playTurn() throws InvalidMoveException{
-		if(current.isFrozen()){
-			current.setFrozen(false);
+		if(this.current.isFrozen()){
+			this.current.setFrozen(false);
 		} else{
 			int roll = rollDice();
-			board.moveMonster(current, roll, getCurrentOpponent());
+			this.board.moveMonster(this.current, roll, this.getCurrentOpponent());
 		}
-		switchTurn();
+		this.switchTurn();
 	}
 	
 	public Monster getWinner(){
-		if(checkWinCondition(player)) {
-			return player;
-		} else if(checkWinCondition(opponent)) {
-			return opponent;
-		}
-		return null; // No winner yet
+		if(checkWinCondition(this.player)) return this.player;
+		if(checkWinCondition(this.opponent)) return this.opponent;
+		return null;
 	}
 }

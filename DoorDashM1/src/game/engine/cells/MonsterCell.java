@@ -24,8 +24,6 @@ public class MonsterCell extends Cell {
         	int cellEnergy = getCellMonster().getEnergy();
         	getCellMonster().setEnergy(landingEnergy);
         	landingMonster.alterEnergy(cellEnergy - landingEnergy);
-    }
-}
-
-
+    	}
+	}
 }

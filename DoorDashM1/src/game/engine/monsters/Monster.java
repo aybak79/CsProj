@@ -95,7 +95,7 @@ public abstract class Monster implements Comparable<Monster> {
 	public abstract void executePowerupEffect(Monster opponentMonster);
 
 	public boolean isConfused(){
-		return confusionTurns > 0;
+		return confusionTurns != 0;
 	}
 
 	public void move(int distance){

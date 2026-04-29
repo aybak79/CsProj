@@ -19,7 +19,6 @@ public class ConfusionCard extends Card {
 		monster.setRole(opponentRole);
 		opponent.setConfusionTurns(duration);
 		opponent.setRole(monsterRole);
-	
 	}
 	
 	public int getDuration() {
