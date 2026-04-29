@@ -2,7 +2,6 @@ package game.engine;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import game.engine.cards.Card;
 import game.engine.cells.*;
 import game.engine.exceptions.InvalidMoveException;
@@ -26,9 +25,7 @@ public class Board {
 		index = index % Constants.BOARD_SIZE;
 		int row = (index / Constants.BOARD_ROWS);
 		int col = index % Constants.BOARD_COLS;
-		if(row % 2 == 1) {
-			col = Constants.BOARD_COLS - 1 - col;
-		}
+		if(row % 2 == 1) col = Constants.BOARD_COLS - 1 - col;
 		return new int[] {row, col};
 	}
 

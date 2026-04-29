@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import game.engine.exceptions.InvalidCSVFormat;
 import game.engine.Role;
 import game.engine.cards.*;

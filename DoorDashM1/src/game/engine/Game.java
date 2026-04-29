@@ -1,14 +1,11 @@
 package game.engine;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import game.engine.dataloader.DataLoader;
 import game.engine.monsters.*;
 import game.engine.exceptions.*;
-
 
 public class Game {
 	private Board board;
