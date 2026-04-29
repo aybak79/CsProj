@@ -40,7 +40,7 @@ public class Board {
 
 		for(int i = 0; i < Constants.MONSTER_CELL_INDICES.length; i++) {
 			int monsterIndex = Constants.MONSTER_CELL_INDICES[i];
-			if (!stationedMonsters.isEmpty()){
+			if (stationedMonsters != null && !stationedMonsters.isEmpty() && i < stationedMonsters.size()){
 				Monster monster = stationedMonsters.get(i);
 				monster.setPosition(monsterIndex);
 				this.setCell(monsterIndex, new MonsterCell(monster.getName(),monster));
