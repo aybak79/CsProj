@@ -7,8 +7,6 @@ import game.engine.cards.Card;
 import game.engine.cells.*;
 import game.engine.exceptions.InvalidMoveException;
 import game.engine.monsters.Monster;
-import game.engine.dataloader.DataLoader;
-import java.io.IOException;
 
 public class Board {
 	private Cell[][] boardCells;
@@ -21,7 +19,7 @@ public class Board {
 		stationedMonsters = new ArrayList<Monster>();
 		originalCards = readCards;
 		this.setCardsByRarity();
-		reloadCards();
+		Board.reloadCards();
 	}
 
 	private int[] indexToRowCol(int index) {
@@ -48,77 +46,77 @@ public class Board {
 			if (!stationedMonsters.isEmpty()){
 				Monster monster = stationedMonsters.get(i);
 				monster.setPosition(monsterIndex);
-				setCell(monsterIndex, new MonsterCell(monster.getName(),monster));
+				this.setCell(monsterIndex, new MonsterCell(monster.getName(),monster));
 			}
 		}
 
 		for(int i = 0; i < Constants.CARD_CELL_INDICES.length; i++) {
 			int cardIndex = Constants.CARD_CELL_INDICES[i];
-			setCell(cardIndex, new CardCell("Card Cell"));
+			this.setCell(cardIndex, new CardCell("Card Cell"));
 		}
 
 		for(int i = 0; i < Constants.CONVEYOR_CELL_INDICES.length; i++) {
 			int conveyIndex = Constants.CONVEYOR_CELL_INDICES[i];
-			setCell(conveyIndex, specialCells.get(2 * i));
+			this.setCell(conveyIndex, specialCells.get(2 * i));
 		}
 
 		for(int i = 0; i < Constants.SOCK_CELL_INDICES.length; i++) {
 			int sockIndex = Constants.SOCK_CELL_INDICES[i];
-			setCell(sockIndex, specialCells.get(2 * i + 1));
+			this.setCell(sockIndex, specialCells.get(2 * i + 1));
 		}
 	}
 
 	private void setCardsByRarity() {
 		ArrayList<Card> cardsByRarity = new ArrayList<Card>();
-		for(Card card : originalCards) {
+		for(Card card : Board.originalCards) {
 			for(int i = 0; i < card.getRarity(); i++) {
 				cardsByRarity.add(card);
 			}
 		}
-		originalCards = cardsByRarity;
+		Board.originalCards = cardsByRarity;
 	}
 
 	public static void reloadCards() {
-		Collections.shuffle(originalCards);
-		cards = originalCards;
+		Collections.shuffle(Board.originalCards);
+		Board.cards = Board.originalCards;
 	}
 
 	public static Card drawCard() {
-		if(cards.isEmpty()) {
-			reloadCards();
+		if(Board.cards.isEmpty()) {
+			Board.reloadCards();
 		}
-		return cards.remove(0);
+		return Board.cards.remove(0);
 	}
 
 	public void moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException {
-		if(currentMonster.getPosition() + roll  == opponentMonster.getPosition()) {
+		if(currentMonster.getPosition() + roll == opponentMonster.getPosition()) {
 			throw new InvalidMoveException("Cannot move to a cell occupied by the opponent monster.");
 		}
 		currentMonster.move(roll);
 		if(currentMonster.getConfusionTurns() > 0) {
 			currentMonster.decrementConfusion();
 		}
-		getCell(currentMonster.getPosition()).onLand(currentMonster, opponentMonster);
+		this.getCell(currentMonster.getPosition()).onLand(currentMonster, opponentMonster);
 		this.updateMonsterPositions(currentMonster, opponentMonster);
 	}
 
 	private void updateMonsterPositions(Monster player, Monster opponent) {
 		for(int i = 0; i < Constants.BOARD_SIZE; i++) {
-			Cell cell = getCell(i);
+			Cell cell = this.getCell(i);
 			cell.setMonster(null);
 		}
-		getCell(player.getPosition()).setMonster(player);
-		getCell(opponent.getPosition()).setMonster(opponent);
+		this.getCell(player.getPosition()).setMonster(player);
+		this.getCell(opponent.getPosition()).setMonster(opponent);
 	}
 
 	private Cell getCell(int index) {
-		int[] rowCol = indexToRowCol(index);
-		return boardCells[rowCol[0]][rowCol[1]];
+		int[] rowCol = this.indexToRowCol(index);
+		return this.boardCells[rowCol[0]][rowCol[1]];
 	}
 
 	private void setCell(int index, Cell cell) {
-		int[] rowCol = indexToRowCol(index);
-		boardCells[rowCol[0]][rowCol[1]] = cell;
+		int[] rowCol = this.indexToRowCol(index);
+		this.boardCells[rowCol[0]][rowCol[1]] = cell;
 	}
 	
 	public Cell[][] getBoardCells() {
@@ -144,15 +142,4 @@ public class Board {
 	public static void setCards(ArrayList<Card> cards) {
 		Board.cards = cards;
 	}
-
-	public static void main(String[] args) throws IOException {
-		Board board = new Board(DataLoader.readCards());
-		Board.setStationedMonsters(DataLoader.readMonsters());
-		board.initializeBoard(DataLoader.readCells());
-		for (int i = 0; i < Constants.BOARD_SIZE; i++) {
-			Cell cell = board.getCell(i);
-			System.out.println("Index: " + i + ", Cell Type: " + cell.getClass().getSimpleName());
-		}
-	}
-
 }

@@ -13,10 +13,10 @@ public class Schemer extends Monster {
 	@Override
 	public void executePowerupEffect(Monster opponentMonster){
 		int total = 0;
-		total+= stealEnergyFrom(opponentMonster);
+		total += stealEnergyFrom(opponentMonster);
 		for(Monster stationed : Board.getStationedMonsters()) {
 			if(stationed != opponentMonster) {
-				total+= stealEnergyFrom(stationed);
+				total += stealEnergyFrom(stationed);
 			}
 		}
 		this.alterEnergy(total);
