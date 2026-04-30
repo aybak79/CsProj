@@ -98,8 +98,10 @@ public abstract class Monster implements Comparable<Monster> {
 		return confusionTurns != 0;
 	}
 
-	public void move(int distance){
-		this.setPosition(this.getPosition() + distance);
+	public void move(int distance) {
+	    position = (position + distance) % Constants.BOARD_SIZE;
+	    if(position < 0)
+	        position += Constants.BOARD_SIZE;
 	}
 
 	public void decrementConfusion(){
