@@ -106,7 +106,7 @@ public abstract class Monster implements Comparable<Monster> {
 		if (this.getConfusionTurns() > 0) {
 			this.setConfusionTurns(this.getConfusionTurns() - 1);
 		}
-		else {
+		if (this.getConfusionTurns() == 0) {
 			this.setRole(this.getOriginalRole());
 		}
 	}

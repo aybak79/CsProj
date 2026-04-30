@@ -74,8 +74,8 @@ public class Board {
 	}
 
 	public static void reloadCards() {
-		Collections.shuffle(Board.originalCards);
-		Board.cards = Board.originalCards;
+		Board.cards = new ArrayList<>(Board.originalCards);
+		Collections.shuffle(Board.cards);
 	}
 
 	public static Card drawCard() {
