@@ -84,14 +84,18 @@ public class Board {
 	}
 
 	public void moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException {
-		if(currentMonster.getPosition() + roll == opponentMonster.getPosition()) {
+		Role oldRole = currentMonster.getRole();
+		int originalPosition = currentMonster.getPosition();
+		currentMonster.move(roll);
+		this.getCell(currentMonster.getPosition()).onLand(currentMonster, opponentMonster);
+		if(currentMonster.getPosition() == opponentMonster.getPosition()) {
+			currentMonster.setPosition(originalPosition);
 			throw new InvalidMoveException("Cannot move to a cell occupied by the opponent monster.");
 		}
-		currentMonster.move(roll);
-		if(currentMonster.getConfusionTurns() > 0) {
+		if(currentMonster.getConfusionTurns() > 0 && oldRole == currentMonster.getRole()) {
 			currentMonster.decrementConfusion();
+			opponentMonster.decrementConfusion();
 		}
-		this.getCell(currentMonster.getPosition()).onLand(currentMonster, opponentMonster);
 		this.updateMonsterPositions(currentMonster, opponentMonster);
 	}
 
