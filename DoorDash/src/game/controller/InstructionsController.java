@@ -8,17 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class StartScreenController {
-
-    @FXML private Button startButton;
+public class InstructionsController {
+    @FXML private Button readyButton;
     @FXML
     public void initialize() {
         // any setup that needs the @FXML fields ready goes here
     }
 
-   @FXML
-    private void handleStart(ActionEvent event) throws Exception {
-        loadScene("/game/view/views/InstructionsView.fxml", event);
+    @FXML
+    private void handleReady(ActionEvent event) {
+        // navigate to role selection
+        loadScene("/game/view/views/ChooseView.fxml", event);
     }
 
     private void loadScene(String fxmlPath, ActionEvent event) {
