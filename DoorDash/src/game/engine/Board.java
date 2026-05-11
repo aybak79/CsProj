@@ -13,6 +13,7 @@ public class Board {
 	private static ArrayList<Monster> stationedMonsters; 
 	private static ArrayList<Card> originalCards;
 	public static ArrayList<Card> cards;
+	private static ArrayList<Card> drawnCards;
 	
 	public Board(ArrayList<Card> readCards) {
 		this.boardCells = new Cell[Constants.BOARD_ROWS][Constants.BOARD_COLS];
@@ -115,16 +116,17 @@ public class Board {
 	public static void reloadCards() {
 		cards = new ArrayList<>(originalCards);
 		Collections.shuffle(cards);
+		drawnCards = new ArrayList<>();
     }
 	
 	public static Card drawCard() {
-		if (cards.isEmpty()) 
+		if (cards.isEmpty()) {}
 			reloadCards();
-		
+		drawnCards.addFirst(cards.get(0));
 		return cards.remove(0);
 	}
 
-	public void moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException {
+	public Cell moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException {
 	    Role oldRole = currentMonster.getRole();
 	    int oldPosition = currentMonster.getPosition();
 	    
@@ -145,6 +147,7 @@ public class Board {
 	    }
 	    
 	    updateMonsterPositions(currentMonster, opponentMonster);
+	    return getCell(currentMonster.getPosition());
 	}
 
 	private void updateMonsterPositions(Monster player, Monster opponent) {
@@ -153,5 +156,9 @@ public class Board {
 		
 		getCell(player.getPosition()).setMonster(player);
 		getCell(opponent.getPosition()).setMonster(opponent);
+	}
+
+	public static ArrayList<Card> getDrawnCards() {
+		return drawnCards;	
 	}
 }

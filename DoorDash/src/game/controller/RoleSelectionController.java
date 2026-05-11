@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.engine.Game;
 import game.engine.Role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,13 +27,10 @@ public class RoleSelectionController {
 
     private void startGame(Role role, ActionEvent event) {
         try {
+            Game game = new Game(role);
+            GameController.game = game;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/GameView.fxml"));
             Scene scene = new Scene(loader.load());
-
-            // Get the next controller and pass the side BEFORE switching
-            //GameController gameController = loader.getController();
-            //gameController.initGame(role);  // your method to set up the game
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
         } catch (Exception e) {

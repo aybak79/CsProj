@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import game.engine.cards.Card;
+import game.engine.cells.CardCell;
+import game.engine.cells.DoorCell;
 import game.engine.dataloader.DataLoader;
 import game.engine.exceptions.InvalidMoveException;
 import game.engine.exceptions.OutOfEnergyException;
 import game.engine.monsters.*;
+import game.engine.cells.*;;;
 
 public class Game {
 	private Board board;
@@ -82,19 +86,26 @@ public class Game {
 		current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
 	}
 	
-	public void playTurn() throws InvalidMoveException {
+	public TurnResult playTurn() throws InvalidMoveException {
 		if (current.isFrozen()) {
-			System.out.println(current.getName() + " is frozen! Turn skipped.");
 			current.setFrozen(false);
 			switchTurn();
-			return;
+			return new TurnResult(0, null, false, true);
 		}
-		
+
 		int roll = rollDice();
-		
-		board.moveMonster(current, roll, getCurrentOpponent());
-		
+		Cell landedCell = board.moveMonster(current, roll, getCurrentOpponent());
+		Card cardDrawn = null;
+		boolean landedOnDoor = false;
+
+		if (landedCell instanceof CardCell) {
+			cardDrawn = Board.getDrawnCards().getFirst();
+		} else if (landedCell instanceof DoorCell) {
+			landedOnDoor = true;
+		}
+
 		switchTurn();
+		return new TurnResult(roll, cardDrawn, landedOnDoor, false);
 	}
 	
 	private void switchTurn() {
