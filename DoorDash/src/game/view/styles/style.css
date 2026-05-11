@@ -14,3 +14,41 @@
 .label {
     -fx-background-color: #f4c064;
 }
+
+.card {
+    -fx-background-color: #e32828;
+}
+
+.monster {
+    -fx-background-color: #3d9bd9;
+}
+
+.belt {
+    -fx-background-color: #4be137;
+}
+
+.sock {
+    -fx-background-color: #ffe100;
+    -fx-background-image: url("assets/sock.png");
+    -fx-background-size: 100% 100%;
+}
+
+.door-closed {
+    -fx-background-image: url("assets/door-closed.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.door-open {
+    -fx-background-image: url("assets/door-open.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
