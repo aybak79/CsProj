@@ -1,7 +1,9 @@
 package game.controller;
 
+import game.engine.Board;
 import game.engine.Game;
 import game.engine.TurnResult;
+import game.engine.monsters.Monster;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import game.engine.Board;
+import game.engine.Role;
+import game.engine.monsters.Monster;
+import javafx.scene.control.Label;
+import game.engine.Role;
+import game.engine.cards.Card;
 
 public class GameController {
     static Game game;
@@ -41,6 +49,20 @@ public class GameController {
     @FXML private ImageView opponentConfusion;
     @FXML private ImageView playerSelector;
     @FXML private ImageView opponentSelector;
+    @FXML private Label cardsCount;
+    @FXML private Label cardTitle;
+    @FXML private Label cardEffect;
+    @FXML private StackPane cardPanel;
+
+    private static final javafx.scene.image.Image IMG_SULLIVAN = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
+    private static final javafx.scene.image.Image IMG_WAZOWSKI = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
+    private static final javafx.scene.image.Image IMG_RANDALL  = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Randall.png"));
+    private static final javafx.scene.image.Image IMG_CELIA    = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Celia.png"));
+    private static final javafx.scene.image.Image IMG_ROZ      = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Roz.png"));
+    private static final javafx.scene.image.Image IMG_FUNGUS   = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Fungus.png"));
+    private static final javafx.scene.image.Image IMG_WATERNOOSE = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Waternoose.png"));
+    private static final javafx.scene.image.Image IMG_YETI     = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Yeti.png"));
+
     @FXML
     public void initialize() {
         playerORole.setText(game.getPlayer().getOriginalRole().toString());
@@ -49,6 +71,7 @@ public class GameController {
         opponentORole.setText(game.getOpponent().getOriginalRole().toString());
         opponentType.setText(game.getOpponent().getClass().getSimpleName());
         opponentName.setText(game.getOpponent().getName());
+        initMonsterCells();
         updateUI(new TurnResult(0, null, false, false));
     }
 
@@ -109,6 +132,8 @@ public class GameController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
         }
         updateBoardImages(board);
         if(turnResult.landedOnDoor) {
@@ -126,6 +151,14 @@ public class GameController {
                 }
             }
         }
+
+        cardsCount.setText("Cards: " + Board.getCards().size());
+        if (!Board.getDrawnCards().isEmpty()) {
+            Card last = Board.getDrawnCards().getFirst();
+            cardTitle.setText(last.getName());
+            cardEffect.setText(last.getDescription());
+}
+        
     }
 
     private void updateBoardImages(GridPane board) {
@@ -180,4 +213,61 @@ public class GameController {
                 e.printStackTrace();
             }
     }
+
+    private void initMonsterCells() {
+    for (Node node : board.getChildren()) {
+        if (node instanceof StackPane cell) {
+            if (cell.getStyleClass().contains("monster")) {
+                // Find which board index this cell maps to
+                int row = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
+                int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
+                int pos = coordsToInt(row, col);
+
+                // Find which stationed monster lives here
+        for (Monster m : Board.getStationedMonsters()) {
+            if (m.getPosition() == pos) {
+                // Map monster name to image file
+                javafx.scene.image.Image img = switch (m.getName()) {
+                case "James P. Sullivan"    -> IMG_SULLIVAN;
+                case "Mike Wazowski"        -> IMG_WAZOWSKI;
+                case "Randall Boggs"        -> IMG_RANDALL;
+                case "Celia Mae"            -> IMG_CELIA;
+                case "Roz"                  -> IMG_ROZ;
+                case "Fungus"               -> IMG_FUNGUS;
+                case "Henry J. Waternoose"  -> IMG_WATERNOOSE;
+                case "Yeti"                 -> IMG_YETI;
+                default                     -> null;
+            };
+
+            if (img != null) {
+                ImageView iv = new ImageView(img);
+                iv.setFitWidth(40);
+                iv.setFitHeight(55);
+                iv.setPreserveRatio(true);
+                StackPane.setAlignment(iv, javafx.geometry.Pos.CENTER);
+                cell.getChildren().add(iv);
+            }
+
+                Label nameLabel = new Label(m.getName());
+                nameLabel.setStyle(
+                    "-fx-font-size: 9px; -fx-text-fill: white; " +
+                    "-fx-background-color: rgba(0,0,0,0.6); " +
+                    "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
+                );
+                StackPane.setAlignment(nameLabel, javafx.geometry.Pos.BOTTOM_CENTER);
+                cell.getChildren().add(nameLabel);
+                break;
+            }
+        }
+            }
+        }
+    }
+}
+
+// Reverse of intToCoords — converts grid (row,col) back to board index
+private int coordsToInt(int gridRow, int gridCol) {
+    int row = 9 - gridRow;
+    int col = (row % 2 == 0) ? gridCol : (9 - gridCol);
+    return row * 10 + col;
+}
 }

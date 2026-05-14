@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.InputStreamReader;
 
 import game.engine.exceptions.InvalidCSVFormat;
 import game.engine.Role;
@@ -20,7 +21,7 @@ public class DataLoader {
 	public static ArrayList<Card> readCards() throws IOException {
 		ArrayList<Card> cards = new ArrayList<Card>();
 
-		BufferedReader br = new BufferedReader(new FileReader(CARDS_FILE_NAME));
+		BufferedReader br = new BufferedReader(new InputStreamReader(DataLoader.class.getResourceAsStream("/" + CARDS_FILE_NAME)));
 
 		while (br.ready()) {
 			String nextLine = br.readLine();
@@ -64,7 +65,7 @@ public class DataLoader {
 	public static ArrayList<Cell> readCells() throws IOException {
 		ArrayList<Cell> cells = new ArrayList<Cell>();
 
-		BufferedReader br = new BufferedReader(new FileReader(CELLS_FILE_NAME));
+		BufferedReader br = new BufferedReader(new InputStreamReader(DataLoader.class.getResourceAsStream("/" + CELLS_FILE_NAME)));
 
 		while (br.ready()) {
 			String nextLine = br.readLine();
@@ -94,7 +95,7 @@ public class DataLoader {
 	public static ArrayList<Monster> readMonsters() throws IOException {
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
-		BufferedReader br = new BufferedReader(new FileReader(MONSTERS_FILE_NAME));
+		BufferedReader br = new BufferedReader(new InputStreamReader(DataLoader.class.getResourceAsStream("/" + MONSTERS_FILE_NAME)));
 
 		while (br.ready()) {
 			String nextLine = br.readLine();
