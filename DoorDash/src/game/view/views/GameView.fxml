@@ -524,13 +524,18 @@
                      </font>
                   </Label>
                </children></StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <children>
                   <Label alignment="TOP_LEFT" styleClass="index-label" text="36" StackPane.alignment="TOP_LEFT">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="52.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/card.png" />
+                     </image>
+                  </ImageView>
                </children></StackPane>
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <children>
@@ -735,13 +740,8 @@
                      </font>
                   </Label>
                </children></StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="card" GridPane.columnIndex="5" GridPane.rowIndex="6">
+            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="5" GridPane.rowIndex="6">
                <children>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/card.png" />
-                     </image>
-                  </ImageView>
                   <Label alignment="TOP_LEFT" styleClass="index-label" text="34" StackPane.alignment="TOP_LEFT">
                      <font>
                         <Font size="20.0" />
@@ -1176,7 +1176,7 @@
                      </font>
                   </Label>
                </children></StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="8" GridPane.rowIndex="9">
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9">
                <children>
                   <Label alignment="TOP_LEFT" styleClass="index-label" text="8" StackPane.alignment="TOP_LEFT">
                      <font>
