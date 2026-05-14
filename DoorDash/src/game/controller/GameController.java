@@ -62,6 +62,8 @@ public class GameController {
     private static final javafx.scene.image.Image IMG_FUNGUS   = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Fungus.png"));
     private static final javafx.scene.image.Image IMG_WATERNOOSE = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Waternoose.png"));
     private static final javafx.scene.image.Image IMG_YETI     = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Yeti.png"));
+    private int prevPlayerEnergy;
+    private int prevOpponentEnergy;
 
     @FXML
     public void initialize() {
@@ -74,6 +76,8 @@ public class GameController {
         initMonsterCells();
         initDoorCells();
         updateUI(new TurnResult(0, null, false, false));
+        prevPlayerEnergy = game.getPlayer().getEnergy();
+        prevOpponentEnergy = game.getOpponent().getEnergy();
     }
 
     private void updateUI(TurnResult turnResult) {
@@ -159,8 +163,14 @@ public class GameController {
             cardTitle.setText(last.getName());
             cardEffect.setText(last.getDescription());
 }
-        
-    }
+       
+        if (rollButton.getScene() != null) {
+            showEnergyChange(game.getPlayer(), prevPlayerEnergy);
+            showEnergyChange(game.getOpponent(), prevOpponentEnergy);
+        }
+        prevPlayerEnergy = game.getPlayer().getEnergy();
+        prevOpponentEnergy = game.getOpponent().getEnergy();
+        }
 
     private void updateBoardImages(GridPane board) {
         if (player.getParent() != null) ((Pane) player.getParent()).getChildren().remove(player);
@@ -215,6 +225,41 @@ public class GameController {
             }
     }
 
+    private void showEnergyChange(Monster monster, int oldEnergy) {
+        int delta = monster.getEnergy() - oldEnergy;
+        if (delta == 0) return;
+
+        // Pick the monster ImageView (player or opponent)
+        ImageView monsterView = (monster == game.getPlayer()) ? player : opponent;
+
+        String sign = delta > 0 ? "+" : "";
+        Label indicator = new Label(sign + delta);
+        indicator.setStyle(
+            "-fx-font-size: 16px; -fx-font-weight: bold; " +
+            "-fx-text-fill: " + (delta > 0 ? "#00ff88" : "#ff4444") + "; " +
+            "-fx-background-color: rgba(0,0,0,0.75); " +
+            "-fx-padding: 4 8 4 8; -fx-background-radius: 8;"
+        );
+
+        Pane root = (Pane) rollButton.getScene().getRoot();
+
+        // Position it next to the monster image in scene coordinates
+        javafx.geometry.Bounds bounds = monsterView.localToScene(monsterView.getBoundsInLocal());
+        boolean isPlayer = monster == game.getPlayer();
+        indicator.setLayoutX(isPlayer ? bounds.getMaxX() + 8 : bounds.getMinX() - 60);
+        indicator.setLayoutY(bounds.getMinY() + bounds.getHeight() / 2 - 12);
+
+        root.getChildren().add(indicator);
+
+        javafx.animation.FadeTransition ft = new javafx.animation.FadeTransition(
+            javafx.util.Duration.seconds(3.0), indicator
+        );
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        ft.setOnFinished(e -> root.getChildren().remove(indicator));
+        ft.play();
+    }
+
     private void initMonsterCells() {
     for (Node node : board.getChildren()) {
         if (node instanceof StackPane cell) {
@@ -263,9 +308,9 @@ public class GameController {
             }
         }
     }
+    }
 
     
-}
 
 private void initDoorCells() {
     for (Node node : board.getChildren()) {
@@ -300,4 +345,5 @@ private int coordsToInt(int gridRow, int gridCol) {
     int col = (row % 2 == 0) ? gridCol : (9 - gridCol);
     return row * 10 + col;
 }
+
 }
