@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1064.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
    <children>
@@ -1251,12 +1252,13 @@
       </ImageView>
          <Label fx:id="cardsCount" blendMode="SRC_ATOP" layoutX="969.0" layoutY="56.0" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: black;" text="Cards: 25" />
 
-   <StackPane fx:id="cardPanel" layoutX="720.0" layoutY="7.0" prefHeight="110.0" prefWidth="210.0" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;">
+      <VBox fx:id="cardPanel" layoutX="720.0" layoutY="7.0" prefHeight="110.0" prefWidth="210.0" spacing="4" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;" alignment="TOP_CENTER">
       <children>
          <Label fx:id="cardTitle" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: gold; -fx-background-color: black;" text="No card drawn yet" wrapText="true" StackPane.alignment="TOP_CENTER" />
-         <Label fx:id="cardEffect" style="-fx-font-size: 11px; -fx-text-fill: white;" text="" wrapText="true" StackPane.alignment="CENTER" />
+         <Label fx:id="cardType" style="-fx-font-size: 11px; -fx-text-fill: cyan; -fx-background-color: black; -fx-padding: 2 6 2 6; -fx-background-radius: 4;" text="" wrapText="true" StackPane.alignment="CENTER" />
+         <Label fx:id="cardEffect" style="-fx-font-size: 11px; -fx-text-fill: white; -fx-background-color: black;" text="" wrapText="true" StackPane.alignment="CENTER" />
       </children>
-</StackPane>
+</VBox>
       <ImageView fitHeight="125.0" fitWidth="136.0" layoutX="939.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/deck.png" />

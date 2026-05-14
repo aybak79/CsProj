@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import game.engine.Board;
 import game.engine.Role;
@@ -52,7 +53,8 @@ public class GameController {
     @FXML private Label cardsCount;
     @FXML private Label cardTitle;
     @FXML private Label cardEffect;
-    @FXML private StackPane cardPanel;
+    @FXML private VBox cardPanel;
+    @FXML private Label cardType;
 
     private static final javafx.scene.image.Image IMG_SULLIVAN = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
     private static final javafx.scene.image.Image IMG_WAZOWSKI = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
@@ -161,16 +163,18 @@ public class GameController {
         if (!Board.getDrawnCards().isEmpty()) {
             Card last = Board.getDrawnCards().getFirst();
             cardTitle.setText(last.getName());
+            cardType.setText(last.getClass().getSimpleName().replace("Card", ""));
             cardEffect.setText(last.getDescription());
 }
        
-        if (rollButton.getScene() != null) {
-            showEnergyChange(game.getPlayer(), prevPlayerEnergy);
-            showEnergyChange(game.getOpponent(), prevOpponentEnergy);
+    if (rollButton.getScene() != null) {
+        showEnergyChange(game.getPlayer(), prevPlayerEnergy);
+        showEnergyChange(game.getOpponent(), prevOpponentEnergy);
+    }
+    prevPlayerEnergy = game.getPlayer().getEnergy();
+    prevOpponentEnergy = game.getOpponent().getEnergy();
         }
-        prevPlayerEnergy = game.getPlayer().getEnergy();
-        prevOpponentEnergy = game.getOpponent().getEnergy();
-        }
+    
 
     private void updateBoardImages(GridPane board) {
         if (player.getParent() != null) ((Pane) player.getParent()).getChildren().remove(player);
@@ -229,8 +233,12 @@ public class GameController {
         int delta = monster.getEnergy() - oldEnergy;
         if (delta == 0) return;
 
-        // Pick the monster ImageView (player or opponent)
-        ImageView monsterView = (monster == game.getPlayer()) ? player : opponent;
+        int[] coords = intToCoords(monster.getPosition());
+        StackPane cell = (StackPane) getCell(coords[0], coords[1]);
+        if (cell == null) return;
+
+        // Get the cell's position in screen coordinates
+        javafx.geometry.Bounds bounds = cell.localToScene(cell.getBoundsInLocal());
 
         String sign = delta > 0 ? "+" : "";
         Label indicator = new Label(sign + delta);
@@ -241,14 +249,12 @@ public class GameController {
             "-fx-padding: 4 8 4 8; -fx-background-radius: 8;"
         );
 
+        // Position it centered above the cell
+        indicator.setLayoutX(bounds.getMinX() + bounds.getWidth() / 2 - 20);
+        indicator.setLayoutY(bounds.getMinY() - 40);
+
+        // Add to the root pane so it floats above everything
         Pane root = (Pane) rollButton.getScene().getRoot();
-
-        // Position it next to the monster image in scene coordinates
-        javafx.geometry.Bounds bounds = monsterView.localToScene(monsterView.getBoundsInLocal());
-        boolean isPlayer = monster == game.getPlayer();
-        indicator.setLayoutX(isPlayer ? bounds.getMaxX() + 8 : bounds.getMinX() - 60);
-        indicator.setLayoutY(bounds.getMinY() + bounds.getHeight() / 2 - 12);
-
         root.getChildren().add(indicator);
 
         javafx.animation.FadeTransition ft = new javafx.animation.FadeTransition(
@@ -258,7 +264,7 @@ public class GameController {
         ft.setToValue(0.0);
         ft.setOnFinished(e -> root.getChildren().remove(indicator));
         ft.play();
-    }
+}
 
     private void initMonsterCells() {
     for (Node node : board.getChildren()) {
