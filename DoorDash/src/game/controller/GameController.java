@@ -72,6 +72,7 @@ public class GameController {
         opponentType.setText(game.getOpponent().getClass().getSimpleName());
         opponentName.setText(game.getOpponent().getName());
         initMonsterCells();
+        initDoorCells();
         updateUI(new TurnResult(0, null, false, false));
     }
 
@@ -259,6 +260,35 @@ public class GameController {
                 break;
             }
         }
+            }
+        }
+    }
+
+    
+}
+
+private void initDoorCells() {
+    for (Node node : board.getChildren()) {
+        if (node instanceof StackPane cell) {
+            int row = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
+            int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
+            int pos = coordsToInt(row, col);
+
+            // Get the actual cell from the board
+            int boardRow = pos / 10;
+            int boardCol = (boardRow % 2 == 0) ? pos % 10 : 9 - (pos % 10);
+            game.engine.cells.Cell boardCell = game.getBoard().getBoardCells()[boardRow][boardCol];
+
+            if (boardCell instanceof game.engine.cells.DoorCell door) {
+                Label energyLabel = new Label((door.getEnergy() > 0 ? "+" : "") + door.getEnergy());
+                energyLabel.setStyle(
+                    "-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: " +
+                    (door.getEnergy() > 0 ? "lightgreen" : "red") + "; " +
+                    "-fx-background-color: rgba(0,0,0,0.6); " +
+                    "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
+                );
+                StackPane.setAlignment(energyLabel, javafx.geometry.Pos.BOTTOM_RIGHT);
+                cell.getChildren().add(energyLabel);
             }
         }
     }

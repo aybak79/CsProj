@@ -120,11 +120,12 @@ public class Board {
     }
 	
 	public static Card drawCard() {
-		if (cards.isEmpty()) {}
-			reloadCards();
-		drawnCards.addFirst(cards.get(0));
-		return cards.remove(0);
-	}
+			if (cards.isEmpty()) {
+				reloadCards();
+			}
+			drawnCards.addFirst(cards.get(0));
+			return cards.remove(0);
+		}
 
 	public Cell moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException {
 	    Role oldRole = currentMonster.getRole();
