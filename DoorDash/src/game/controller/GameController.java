@@ -402,6 +402,8 @@ public class GameController {
                 game.getCurrent().setPosition(99);
                 updateUI(new TurnResult(0, null, false, false));
                 break;
+            default:
+                break;
         }
     }
 }
