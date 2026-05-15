@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1064.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
    <children>
@@ -262,14 +262,14 @@
                         <Insets />
                      </StackPane.margin>
                   </Label>
-                  <ImageView fx:id="opponent" fitHeight="46.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
-                     <image>
-                        <Image url="@../assets/sully.png" />
-                     </image>
-                  </ImageView>
                   <ImageView fx:id="player" fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
                      <image>
                         <Image url="@../assets/mike.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="opponent" fitHeight="46.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+                     <image>
+                        <Image url="@../assets/sully.png" />
                      </image>
                   </ImageView>
                </children></StackPane>
@@ -1252,7 +1252,7 @@
       </ImageView>
          <Label fx:id="cardsCount" blendMode="SRC_ATOP" layoutX="969.0" layoutY="56.0" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: black;" text="Cards: 25" />
 
-      <VBox fx:id="cardPanel" layoutX="720.0" layoutY="7.0" prefHeight="110.0" prefWidth="210.0" spacing="4" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;" alignment="TOP_CENTER">
+      <VBox fx:id="cardPanel" alignment="TOP_CENTER" layoutX="720.0" layoutY="7.0" prefHeight="110.0" prefWidth="210.0" spacing="4" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;">
       <children>
          <Label fx:id="cardTitle" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: gold; -fx-background-color: black;" text="No card drawn yet" wrapText="true" StackPane.alignment="TOP_CENTER" />
          <Label fx:id="cardType" style="-fx-font-size: 11px; -fx-text-fill: cyan; -fx-background-color: black; -fx-padding: 2 6 2 6; -fx-background-radius: 4;" text="" wrapText="true" StackPane.alignment="CENTER" />
