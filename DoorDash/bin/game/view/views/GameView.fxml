@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1064.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
+<Pane fx:id="main" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="807.0" prefWidth="1064.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
    <children>
       <GridPane fx:id="board" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="171.0" layoutY="124.0" prefHeight="671.0" prefWidth="723.0">
         <columnConstraints>
@@ -1243,9 +1243,9 @@
             <Image url="@../assets/selector.png" />
          </image>
       </ImageView>
-      <Button fx:id="activateButton" layoutX="555.0" layoutY="39.0" mnemonicParsing="false" onAction="#handlePowerup" text="Activate Powerup" />
-      <Button fx:id="rollButton" layoutX="275.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleRoll" text="Roll Dice" />
-      <ImageView fx:id="dice" fitHeight="117.0" fitWidth="111.0" layoutX="413.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="playerActivateButton" layoutX="43.0" layoutY="731.0" mnemonicParsing="false" onAction="#handlePlayerPowerup" text="Activate Powerup" />
+      <Button fx:id="playerRollButton" layoutX="90.0" layoutY="683.0" mnemonicParsing="false" onAction="#handlePlayerRoll" text="Roll Dice" />
+      <ImageView fx:id="dice" fitHeight="117.0" fitWidth="111.0" layoutX="477.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/6.png" />
          </image>
@@ -1314,5 +1314,7 @@
       <Label layoutX="65.0" layoutY="382.0" text="Name" />
       <Label layoutX="958.0" layoutY="373.0" text="Name" />
       <TextField fx:id="opponentName" alignment="TOP_CENTER" editable="false" layoutX="947.0" layoutY="403.0" prefHeight="17.0" prefWidth="54.0" styleClass="button" text="N/A" />
+      <Button fx:id="opponentRollButton" layoutX="907.0" layoutY="683.0" mnemonicParsing="false" onAction="#handleOpponentRoll" text="Roll Dice" />
+      <Button fx:id="opponentActivateButton" layoutX="906.0" layoutY="731.0" mnemonicParsing="false" onAction="#handleOpponentPowerup" text="Activate Powerup" />
    </children>
 </Pane>

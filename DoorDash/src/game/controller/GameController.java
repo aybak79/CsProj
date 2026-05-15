@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -21,8 +23,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import game.engine.cards.Card;
 import game.engine.exceptions.InvalidMoveException;
-//import game.engine.exceptions.InvalidTurnException;
-//import javafx.scene.control.Alert;
+import game.engine.exceptions.InvalidTurnException;
 import game.engine.exceptions.OutOfEnergyException;
 import javafx.scene.image.Image;
 import static javafx.geometry.Pos.*;
@@ -32,8 +33,10 @@ import javafx.util.Duration;
 
 public class GameController {
     static Game game;
-    @FXML private Button rollButton;
-    @FXML private Button activateButton;
+    @FXML private Button playerRollButton;
+    @FXML private Button playerActivateButton;
+    @FXML private Button opponentRollButton;
+    @FXML private Button opponentActivateButton;
     @FXML private TextField playerORole;
     @FXML private TextField playerCRole;
     @FXML private TextField playerType;
@@ -61,6 +64,7 @@ public class GameController {
     @FXML private Label cardEffect;
     @FXML private VBox cardPanel;
     @FXML private Label cardType;
+    @FXML private Pane main;
 
     private static final Image IMG_SULLIVAN = new Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
     private static final Image IMG_WAZOWSKI = new Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
@@ -75,6 +79,7 @@ public class GameController {
 
     @FXML
     public void initialize() {
+        main.requestFocus();
         playerORole.setText(game.getPlayer().getOriginalRole().toString());
         playerType.setText(game.getPlayer().getClass().getSimpleName());
         playerName.setText(game.getPlayer().getName());
@@ -109,7 +114,7 @@ public class GameController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/GameOverView.fxml"));
                 Scene scene = new Scene(loader.load());
-                Stage stage = (Stage) rollButton.getScene().getWindow();
+                Stage stage = (Stage) main.getScene().getWindow();
                 stage.setScene(scene);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -138,7 +143,7 @@ public class GameController {
             cardEffect.setText(last.getDescription());
         }
 
-        if (rollButton.getScene() != null) {
+        if (playerRollButton.getScene() != null) {
             showEnergyChange(game.getPlayer(), prevPlayerEnergy);
             showEnergyChange(game.getOpponent(), prevOpponentEnergy);
         }
@@ -179,38 +184,11 @@ public class GameController {
         return new int[]{gridRow, gridCol};
     }
 
-   @FXML
-    private void handlePowerup(ActionEvent event) throws Exception {
-        try {
-                game.usePowerup();
-                updateUI(new TurnResult(0, null, false, false));
-            } catch (OutOfEnergyException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Not Enough Energy");
-                alert.setHeaderText("You cannot use this powerup");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-    }
-
-    @FXML
-    private void handleRoll(ActionEvent event) throws Exception {
-        try {
-                TurnResult turnResult = game.playTurn();
-                updateUI(turnResult);
-            } catch (InvalidMoveException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Invalid Move");
-                alert.setHeaderText("You cannot perform this action");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-    }
-        private int coordsToInt(int gridRow, int gridCol) {
+    private int coordsToInt(int gridRow, int gridCol) {
         int row = 9 - gridRow;
         int col = (row % 2 == 0) ? gridCol : (9 - gridCol);
         return row * 10 + col;
-        }
+    }
     private void showEnergyChange(Monster monster, int oldEnergy) {
         int delta = monster.getEnergy() - oldEnergy;
         if (delta == 0) return;
@@ -235,7 +213,7 @@ public class GameController {
         indicator.setLayoutY(bounds.getMinY() - 20);
 
         // Add to the root pane so it floats above everything
-        Pane root = (Pane) rollButton.getScene().getRoot();
+        Pane root = (Pane) main.getScene().getRoot();
         root.getChildren().add(indicator);
 
        FadeTransition ft = new FadeTransition(
@@ -320,5 +298,110 @@ public class GameController {
             }
         }
     }
+    
+   @FXML
+    private void handlePlayerPowerup(ActionEvent event) throws Exception {
+        try {
+            if(game.getCurrent() != game.getPlayer()) {
+                throw new InvalidTurnException();
+            }
+            game.usePowerup();
+            updateUI(new TurnResult(0, null, false, false));
+        } catch (OutOfEnergyException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not Enough Energy");
+            alert.setHeaderText("You cannot use this powerup");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (InvalidTurnException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Turn");
+            alert.setHeaderText("It's not your turn!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
 
+    @FXML
+    private void handleOpponentPowerup(ActionEvent event) throws Exception {
+        try {
+            if(game.getCurrent() != game.getOpponent()) {
+                throw new InvalidTurnException();
+            }
+            game.usePowerup();
+            updateUI(new TurnResult(0, null, false, false));
+        } catch (OutOfEnergyException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not Enough Energy");
+            alert.setHeaderText("You cannot use this powerup");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (InvalidTurnException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Turn");
+            alert.setHeaderText("It's not your turn!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handlePlayerRoll(ActionEvent event) throws Exception {
+        try {
+            if(game.getCurrent() != game.getPlayer()) {
+                throw new InvalidTurnException();
+            }
+            TurnResult turnResult = game.playTurn();
+            updateUI(turnResult);
+        } catch (InvalidMoveException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Move");
+            alert.setHeaderText("You cannot perform this action");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (InvalidTurnException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Turn");
+            alert.setHeaderText("It's not your turn!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void handleOpponentRoll(ActionEvent event) throws Exception {
+        try {
+            if(game.getCurrent() != game.getOpponent()) {
+                throw new InvalidTurnException();
+            }
+            TurnResult turnResult = game.playTurn();
+            updateUI(turnResult);
+        } catch (InvalidMoveException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Move");
+            alert.setHeaderText("You cannot perform this action");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (InvalidTurnException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Turn");
+            alert.setHeaderText("It's not your turn!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleKeyPress(KeyEvent event) {
+        KeyCode key = event.getCode();
+        switch (key) {
+            case E:
+                game.getCurrent().setEnergy(game.getCurrent().getEnergy() + 100);
+                updateUI(new TurnResult(0, null, false, false));
+                break;
+            case W:
+                game.getCurrent().setPosition(99);
+                updateUI(new TurnResult(0, null, false, false));
+                break;
+        }
+    }
 }

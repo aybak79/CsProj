@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="749.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameOverController">
+   <children>
+      <Label layoutX="275.0" layoutY="28.0" text="Game Over">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="61.0" layoutY="108.0" text="The Winning Monster is">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="308.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleBack" text="Go Back to Start" />
+      <Label layoutX="80.0" layoutY="247.0" text="Player Final Energy">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="541.0" layoutY="247.0" text="Opponent Final Energy">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerFinalEnergy" layoutX="116.0" layoutY="292.0" text="Label" />
+      <Label fx:id="opponentFinalEnergy" layoutX="588.0" layoutY="284.0" text="Label" />
+      <Label fx:id="winner" layoutX="360.0" layoutY="165.0" text="Label">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
