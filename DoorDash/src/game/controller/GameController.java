@@ -23,6 +23,10 @@ import game.engine.monsters.Monster;
 import javafx.scene.control.Label;
 import game.engine.Role;
 import game.engine.cards.Card;
+import game.engine.exceptions.InvalidMoveException;
+import game.engine.exceptions.InvalidTurnException;
+import javafx.scene.control.Alert;
+import game.engine.exceptions.OutOfEnergyException;
 
 public class GameController {
     static Game game;
@@ -214,8 +218,12 @@ public class GameController {
         try {
                 game.usePowerup();
                 updateUI(new TurnResult(0, null, false, false));
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (OutOfEnergyException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Not Enough Energy");
+                alert.setHeaderText("You cannot use this powerup");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
     }
 
@@ -224,8 +232,12 @@ public class GameController {
         try {
                 TurnResult turnResult = game.playTurn();
                 updateUI(turnResult);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InvalidMoveException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Move");
+                alert.setHeaderText("You cannot perform this action");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
     }
 
