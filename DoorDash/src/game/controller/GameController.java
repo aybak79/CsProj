@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -17,12 +18,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import game.engine.Board;
-import game.engine.Role;
-import game.engine.monsters.Monster;
 import javafx.scene.control.Label;
-import game.engine.Role;
 import game.engine.cards.Card;
+import javafx.scene.image.Image;
+import static javafx.geometry.Pos.*;
+import game.engine.cells.*;
+import javafx.animation.*;
+import javafx.util.Duration;
 
 public class GameController {
     static Game game;
@@ -56,14 +58,14 @@ public class GameController {
     @FXML private VBox cardPanel;
     @FXML private Label cardType;
 
-    private static final javafx.scene.image.Image IMG_SULLIVAN = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
-    private static final javafx.scene.image.Image IMG_WAZOWSKI = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
-    private static final javafx.scene.image.Image IMG_RANDALL  = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Randall.png"));
-    private static final javafx.scene.image.Image IMG_CELIA    = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Celia.png"));
-    private static final javafx.scene.image.Image IMG_ROZ      = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Roz.png"));
-    private static final javafx.scene.image.Image IMG_FUNGUS   = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Fungus.png"));
-    private static final javafx.scene.image.Image IMG_WATERNOOSE = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Waternoose.png"));
-    private static final javafx.scene.image.Image IMG_YETI     = new javafx.scene.image.Image(GameController.class.getResourceAsStream("/game/view/assets/Yeti.png"));
+    private static final Image IMG_SULLIVAN = new Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
+    private static final Image IMG_WAZOWSKI = new Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
+    private static final Image IMG_RANDALL  = new Image(GameController.class.getResourceAsStream("/game/view/assets/Randall.png"));
+    private static final Image IMG_CELIA    = new Image(GameController.class.getResourceAsStream("/game/view/assets/Celia.png"));
+    private static final Image IMG_ROZ      = new Image(GameController.class.getResourceAsStream("/game/view/assets/Roz.png"));
+    private static final Image IMG_FUNGUS   = new Image(GameController.class.getResourceAsStream("/game/view/assets/Fungus.png"));
+    private static final Image IMG_WATERNOOSE = new Image(GameController.class.getResourceAsStream("/game/view/assets/Waternoose.png"));
+    private static final Image IMG_YETI     = new Image(GameController.class.getResourceAsStream("/game/view/assets/Yeti.png"));
     private int prevPlayerEnergy;
     private int prevOpponentEnergy;
 
@@ -88,48 +90,17 @@ public class GameController {
         opponentCRole.setText(game.getOpponent().getRole().toString());
         opponentEnergy.setText(String.valueOf(game.getOpponent().getEnergy()));
         if (turnResult.roll > 0) {
-            dice.setImage(new javafx.scene.image.Image(getClass().getResourceAsStream("/game/view/assets/" + turnResult.roll + ".png")));
+            dice.setImage(new Image(getClass().getResourceAsStream("/game/view/assets/" + turnResult.roll + ".png")));
         }
-        if (game.getPlayer() == game.getCurrent()) {
-            playerSelector.setVisible(true);
-            opponentSelector.setVisible(false);
-        } else if (game.getOpponent() == game.getCurrent()) {
-            playerSelector.setVisible(false);
-            opponentSelector.setVisible(true);
-        } else {
-            playerSelector.setVisible(false);
-            opponentSelector.setVisible(false);
-        }
-        if(game.getPlayer().isShielded()) {
-            playerShield.setVisible(true);
-        } else {
-            playerShield.setVisible(false);
-        }
-        if(game.getPlayer().isFrozen()) {
-            playerFreeze.setVisible(true);
-        } else {
-            playerFreeze.setVisible(false);
-        }
-        if(game.getPlayer().isConfused()) {
-            playerConfusion.setVisible(true);
-        } else {
-            playerConfusion.setVisible(false);
-        }
-        if(game.getOpponent().isShielded()) {
-            opponentShield.setVisible(true);
-        } else {
-            opponentShield.setVisible(false);
-        }
-        if(game.getOpponent().isFrozen()) {
-            opponentFreeze.setVisible(true);
-        } else {
-            opponentFreeze.setVisible(false);
-        }
-        if(game.getOpponent().isConfused()) {
-            opponentConfusion.setVisible(true);
-        } else {
-            opponentConfusion.setVisible(false);
-        }
+        playerSelector.setVisible(game.getPlayer() == game.getCurrent());
+        opponentSelector.setVisible(game.getOpponent() == game.getCurrent());
+        playerShield.setVisible(game.getPlayer().isShielded());
+        playerFreeze.setVisible(game.getPlayer().isFrozen());
+        playerConfusion.setVisible(game.getPlayer().isConfused());
+        opponentShield.setVisible(game.getOpponent().isShielded());
+        opponentFreeze.setVisible(game.getOpponent().isFrozen());
+        opponentConfusion.setVisible(game.getOpponent().isConfused());
+
         if (game.getWinner() != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/GameOverView.fxml"));
@@ -139,22 +110,18 @@ public class GameController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
+
         updateBoardImages(board);
+
         if(turnResult.landedOnDoor) {
-            if(game.getCurrent() == game.getPlayer()) {
-                for(Node n :  ((StackPane)opponent.getParent()).getChildren()) {
-                    if(n instanceof ImageView && n != opponent && game.getOpponent().getPosition() != 99) {
-                        ((ImageView) n).setImage(new javafx.scene.image.Image(getClass().getResourceAsStream("/game/view/assets/door-closed.png")));
-                    }
-                }
-            } else {
-                for(Node n :  ((StackPane)player.getParent()).getChildren()) {
-                    if(n instanceof ImageView && n != player && game.getPlayer().getPosition() != 99) {
-                        ((ImageView) n).setImage(new javafx.scene.image.Image(getClass().getResourceAsStream("/game/view/assets/door-closed.png")));
-                    }
+            ImageView person = (game.getCurrent() == game.getPlayer()) ? opponent : player;
+            Monster playableCharacter = (game.getCurrent() == game.getPlayer()) ? game.getOpponent() : game.getPlayer();
+            int[] pos = intToCoords(playableCharacter.getPosition());
+            StackPane cell = (StackPane) getCell(pos[0], pos[1]);
+            for(Node n :  cell.getChildren()) {
+                if(n instanceof ImageView && n != person && playableCharacter.getPosition() != 99) {
+                    ((ImageView) n).setImage(new Image(getClass().getResourceAsStream("/game/view/assets/door-closed.png")));
                 }
             }
         }
@@ -165,16 +132,15 @@ public class GameController {
             cardTitle.setText(last.getName());
             cardType.setText(last.getClass().getSimpleName().replace("Card", ""));
             cardEffect.setText(last.getDescription());
-}
-       
-    if (rollButton.getScene() != null) {
-        showEnergyChange(game.getPlayer(), prevPlayerEnergy);
-        showEnergyChange(game.getOpponent(), prevOpponentEnergy);
-    }
-    prevPlayerEnergy = game.getPlayer().getEnergy();
-    prevOpponentEnergy = game.getOpponent().getEnergy();
         }
-    
+
+        if (rollButton.getScene() != null) {
+            showEnergyChange(game.getPlayer(), prevPlayerEnergy);
+            showEnergyChange(game.getOpponent(), prevOpponentEnergy);
+        }
+        prevPlayerEnergy = game.getPlayer().getEnergy();
+        prevOpponentEnergy = game.getOpponent().getEnergy();
+    }
 
     private void updateBoardImages(GridPane board) {
         if (player.getParent() != null) ((Pane) player.getParent()).getChildren().remove(player);
@@ -182,10 +148,10 @@ public class GameController {
         StackPane playerCell = (StackPane) getCell(playerPos[0], playerPos[1]);
         playerCell.getChildren().add(player);
         if (opponent.getParent() != null) ((Pane) opponent.getParent()).getChildren().remove(opponent);
-        int[] opponentPos = intToCoords(game.getOpponent().getPosition());
+        int[] opponentPos = intToCoords(game.getOpponent().getPosition() % 100);
         StackPane opponentCell = (StackPane) getCell(opponentPos[0], opponentPos[1]);
         opponentCell.getChildren().add(opponent);
-}
+    }
 
     private Node getCell(int row, int col) {
         for (Node node : board.getChildren()) {
@@ -209,24 +175,10 @@ public class GameController {
         return new int[]{gridRow, gridCol};
     }
 
-   @FXML
-    private void handlePowerup(ActionEvent event) throws Exception {
-        try {
-                game.usePowerup();
-                updateUI(new TurnResult(0, null, false, false));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-    }
-
-    @FXML
-    private void handleRoll(ActionEvent event) throws Exception {
-        try {
-                TurnResult turnResult = game.playTurn();
-                updateUI(turnResult);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    private int coordsToInt(int gridRow, int gridCol) {
+        int row = 9 - gridRow;
+        int col = (row % 2 == 0) ? gridCol : (9 - gridCol);
+        return row * 10 + col;
     }
 
     private void showEnergyChange(Monster monster, int oldEnergy) {
@@ -249,107 +201,113 @@ public class GameController {
             "-fx-padding: 4 8 4 8; -fx-background-radius: 8;"
         );
 
-        // Position it centered above the cell
         indicator.setLayoutX(bounds.getMinX() + bounds.getWidth() / 2 - 20);
-        indicator.setLayoutY(bounds.getMinY() - 40);
+        indicator.setLayoutY(bounds.getMinY() - 20);
 
         // Add to the root pane so it floats above everything
         Pane root = (Pane) rollButton.getScene().getRoot();
         root.getChildren().add(indicator);
 
-        javafx.animation.FadeTransition ft = new javafx.animation.FadeTransition(
-            javafx.util.Duration.seconds(3.0), indicator
+       FadeTransition ft = new FadeTransition(
+            Duration.seconds(3.0), indicator
         );
         ft.setFromValue(1.0);
         ft.setToValue(0.0);
         ft.setOnFinished(e -> root.getChildren().remove(indicator));
         ft.play();
-}
+    }
 
     private void initMonsterCells() {
-    for (Node node : board.getChildren()) {
-        if (node instanceof StackPane cell) {
-            if (cell.getStyleClass().contains("monster")) {
-                // Find which board index this cell maps to
+        for (Node node : board.getChildren()) {
+            if (node instanceof StackPane cell) {
+                if (cell.getStyleClass().contains("monster")) {
+                    int row = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
+                    int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
+                    int pos = coordsToInt(row, col);
+
+                    for (Monster m : Board.getStationedMonsters()) {
+                        if (m.getPosition() == pos) {
+                            Image img = switch (m.getName()) {
+                            case "James P. Sullivan"    -> IMG_SULLIVAN;
+                            case "Mike Wazowski"        -> IMG_WAZOWSKI;
+                            case "Randall Boggs"        -> IMG_RANDALL;
+                            case "Celia Mae"            -> IMG_CELIA;
+                            case "Roz"                  -> IMG_ROZ;
+                            case "Fungus"               -> IMG_FUNGUS;
+                            case "Henry J. Waternoose"  -> IMG_WATERNOOSE;
+                            case "Yeti"                 -> IMG_YETI;
+                            default                     -> null;
+                            };
+
+                            if (img != null) {
+                                ImageView iv = new ImageView(img);
+                                iv.setFitWidth(40);
+                                iv.setFitHeight(55);
+                                iv.setPreserveRatio(true);
+                                StackPane.setAlignment(iv, CENTER);
+                                cell.getChildren().add(iv);
+                            }
+
+                            Label nameLabel = new Label(m.getName());
+                            nameLabel.setStyle(
+                                "-fx-font-size: 9px; -fx-text-fill: white; " +
+                                "-fx-background-color: rgba(0,0,0,0.6); " +
+                                "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
+                            );
+                            StackPane.setAlignment(nameLabel, BOTTOM_CENTER);
+                            cell.getChildren().add(nameLabel);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    } 
+
+    private void initDoorCells() {
+        for (Node node : board.getChildren()) {
+            if (node instanceof StackPane cell) {
                 int row = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
                 int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
                 int pos = coordsToInt(row, col);
 
-                // Find which stationed monster lives here
-        for (Monster m : Board.getStationedMonsters()) {
-            if (m.getPosition() == pos) {
-                // Map monster name to image file
-                javafx.scene.image.Image img = switch (m.getName()) {
-                case "James P. Sullivan"    -> IMG_SULLIVAN;
-                case "Mike Wazowski"        -> IMG_WAZOWSKI;
-                case "Randall Boggs"        -> IMG_RANDALL;
-                case "Celia Mae"            -> IMG_CELIA;
-                case "Roz"                  -> IMG_ROZ;
-                case "Fungus"               -> IMG_FUNGUS;
-                case "Henry J. Waternoose"  -> IMG_WATERNOOSE;
-                case "Yeti"                 -> IMG_YETI;
-                default                     -> null;
-            };
+                // Get the actual cell from the board
+                int boardRow = pos / 10;
+                int boardCol = (boardRow % 2 == 0) ? pos % 10 : 9 - (pos % 10);
+                Cell boardCell = game.getBoard().getBoardCells()[boardRow][boardCol];
 
-            if (img != null) {
-                ImageView iv = new ImageView(img);
-                iv.setFitWidth(40);
-                iv.setFitHeight(55);
-                iv.setPreserveRatio(true);
-                StackPane.setAlignment(iv, javafx.geometry.Pos.CENTER);
-                cell.getChildren().add(iv);
-            }
-
-                Label nameLabel = new Label(m.getName());
-                nameLabel.setStyle(
-                    "-fx-font-size: 9px; -fx-text-fill: white; " +
-                    "-fx-background-color: rgba(0,0,0,0.6); " +
-                    "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
-                );
-                StackPane.setAlignment(nameLabel, javafx.geometry.Pos.BOTTOM_CENTER);
-                cell.getChildren().add(nameLabel);
-                break;
-            }
-        }
+                if (boardCell instanceof DoorCell door) {
+                    Label energyLabel = new Label( "" + door.getEnergy());
+                    energyLabel.setStyle(
+                        "-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: " +
+                        (door.getEnergy() > 0 ? "white" : "red") + "; " +
+                        "-fx-background-color: rgba(0,0,0,0.6); " +
+                        "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
+                    );
+                    StackPane.setAlignment(energyLabel, BOTTOM_RIGHT);
+                    cell.getChildren().add(energyLabel);
+                }
             }
         }
     }
-    }
 
-    
-
-private void initDoorCells() {
-    for (Node node : board.getChildren()) {
-        if (node instanceof StackPane cell) {
-            int row = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
-            int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
-            int pos = coordsToInt(row, col);
-
-            // Get the actual cell from the board
-            int boardRow = pos / 10;
-            int boardCol = (boardRow % 2 == 0) ? pos % 10 : 9 - (pos % 10);
-            game.engine.cells.Cell boardCell = game.getBoard().getBoardCells()[boardRow][boardCol];
-
-            if (boardCell instanceof game.engine.cells.DoorCell door) {
-                Label energyLabel = new Label((door.getEnergy() > 0 ? "+" : "") + door.getEnergy());
-                energyLabel.setStyle(
-                    "-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: " +
-                    (door.getEnergy() > 0 ? "lightgreen" : "red") + "; " +
-                    "-fx-background-color: rgba(0,0,0,0.6); " +
-                    "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
-                );
-                StackPane.setAlignment(energyLabel, javafx.geometry.Pos.BOTTOM_RIGHT);
-                cell.getChildren().add(energyLabel);
-            }
+    @FXML
+    private void handlePowerup(ActionEvent event) throws Exception {
+        try {
+            game.usePowerup();
+            updateUI(new TurnResult(0, null, false, false));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-}
 
-// Reverse of intToCoords — converts grid (row,col) back to board index
-private int coordsToInt(int gridRow, int gridCol) {
-    int row = 9 - gridRow;
-    int col = (row % 2 == 0) ? gridCol : (9 - gridCol);
-    return row * 10 + col;
-}
-
+    @FXML
+    private void handleRoll(ActionEvent event) throws Exception {
+        try {
+            TurnResult turnResult = game.playTurn();
+            updateUI(turnResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
