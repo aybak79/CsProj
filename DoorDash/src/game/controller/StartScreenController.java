@@ -13,39 +13,33 @@ public class StartScreenController {
     @FXML private AnchorPane root;
     @FXML private Button singleplayer;
     @FXML private Button multiplayer;
+    @FXML private Button instructions;
     @FXML private Button options;
     @FXML private Button exit;
 
     @FXML
     public void initialize() {
-        root.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                newScene.windowProperty().addListener((obs2, oldWindow, newWindow) -> {
-                    if (newWindow != null) {
-                        Stage stage = (Stage) newWindow;
-                        stage.maximizedProperty().addListener((obs3, wasMax, isMax) -> {
-                            if (isMax) stage.setMaximized(true);
-                        });
-                    }
-                });
-            }
-        });
         Font.loadFont(getClass().getResourceAsStream("/game/view/fonts/RussoOne.ttf"), 50);
     }
 
    @FXML
     private void handleSingleStart() throws Exception {
-        loadScene("/game/view/views/InstructionsView.fxml");
+        loadScene("/game/view/views/ChooseView.fxml", "Choose Your Role");
     }
 
     @FXML
     private void handleMultiStart() throws Exception {
-        loadScene("/game/view/views/InstructionsView.fxml");
+        loadScene("/game/view/views/ChooseView.fxml", "Choose");
+    }
+
+    @FXML
+    private void handleInstructions() throws Exception {
+        loadScene("/game/view/views/InstructionsView.fxml", "Instructions");
     }
 
     @FXML
     private void handleOptions() throws Exception {
-        loadScene("/game/view/views/OptionsView.fxml");
+        loadScene("/game/view/views/OptionsView.fxml", "Options");
     }
 
     @FXML
@@ -53,12 +47,15 @@ public class StartScreenController {
         System.exit(0);
     }
 
-    private void loadScene(String fxmlPath) {
+    private void loadScene(String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) root.getScene().getWindow();
+            stage.setTitle(title);
             stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.setFullScreenExitHint("");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -12,9 +12,9 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/StartView.fxml"));
         Scene scene = new Scene(loader.load());
         primaryStage.setTitle("Door Dash");
-        primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitHint("");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
     

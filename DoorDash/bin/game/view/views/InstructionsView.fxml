@@ -2,32 +2,80 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="990.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.InstructionsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.InstructionsController">
    <children>
-      <Button id="readyButton" layoutX="399.0" layoutY="638.0" mnemonicParsing="false" onAction="#handleReady" prefHeight="68.0" prefWidth="175.0" text="Ready" />
-      <Label layoutX="412.0" layoutY="32.0" text="Introduction">
+      <Label alignment="CENTER" layoutX="517.0" layoutY="510.0" prefHeight="38.0" prefWidth="634.0" styleClass="fonted-label" text="● Helpful and hostile monster cells" AnchorPane.bottomAnchor="533.3333333333334" AnchorPane.leftAnchor="517.0" AnchorPane.rightAnchor="769.6666666666665" AnchorPane.topAnchor="510.0">
          <font>
-            <Font size="25.0" />
+            <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="199.0" layoutY="76.0" prefHeight="91.0" prefWidth="563.0" text="DooR DasH: Scare vs Laugh Touchdown is a competitive board game set in the world of Monsters Inc., where the city of Monstropolis runs on energy collected from children. In this thrilling race, two monsters compete to prove who can collect the most energy while navigating the dangerous Floor." textAlignment="CENTER" wrapText="true" />
-      <Label layoutX="214.0" layoutY="167.0" prefHeight="45.0" prefWidth="563.0" text="This is not just a race—it's a test of strategy, risk management, and the eternal rivalry between Scarersand Laughers. Will you harness the power of screams, or rely on the revolutionary energy of laughter?" wrapText="true" />
-      <Label layoutX="370.0" layoutY="294.0" text="Navigate a 100-cell zigzag grid filled with" />
-      <Label layoutX="394.0" layoutY="244.0" text="Game Overview">
+      <Button id="readyButton" fx:id="backButton" alignment="CENTER" focusTraversable="false" layoutX="530.0" layoutY="897.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="106.0" prefWidth="877.0" styleClass="fonted-label" text="Back to Main Menu" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="530.0" AnchorPane.rightAnchor="513.3333333333335" AnchorPane.topAnchor="897.0">
          <font>
-            <Font size="25.0" />
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="749.0" layoutY="89.0" prefHeight="51.0" prefWidth="439.0" styleClass="fonted-label" text="Introduction" textAlignment="CENTER" AnchorPane.bottomAnchor="940.3333333333334" AnchorPane.leftAnchor="749.0" AnchorPane.rightAnchor="732.3333333333335" AnchorPane.topAnchor="89.0">
+         <font>
+            <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="382.0" layoutY="449.0" text="● Game-changing Cards" />
-      <Label layoutX="382.0" layoutY="337.0" text="● Energy-collecting children's doors" />
-      <Label layoutX="381.0" layoutY="394.0" text="● Powerful conveyor belt systems" />
-      <Label layoutX="381.0" layoutY="421.0" text="● Dangerous contamination socks" />
-      <Label layoutX="381.0" layoutY="367.0" text="● Helpful and hostile monster cells" />
-      <Label layoutX="236.0" layoutY="508.0" text="Balance position and energy to become the first monster to reach Boo’s Door with at least 1000 energy." />
-      <Label layoutX="236.0" layoutY="548.0" text="Will you honor tradition with the power of screams, or revolutionize Monstropolis with theenergy of laughter?" />
-      <Label layoutX="332.0" layoutY="584.0" text="The Floor awaits. Only one monster will emerge victorious." />
+      <Label alignment="CENTER" layoutX="569.0" layoutY="150.0" prefHeight="115.0" prefWidth="798.0" styleClass="fonted-label" text="DooR DasH: Scare vs Laugh Touchdown is a competitive board game set in the world of Monsters Inc., where the city of Monstropolis runs on energy collected from children. In this thrilling race, two monsters compete to prove who can collect the most energy while navigating the dangerous Floor." textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="816.0" AnchorPane.leftAnchor="569.0" AnchorPane.rightAnchor="553.6666666666665" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="546.0" layoutY="264.0" prefHeight="105.0" prefWidth="845.0" styleClass="fonted-label" text="This is not just a race—it's a test of strategy, risk management, and the eternal rivalry between Scarersand Laughers. Will you harness the power of screams, or rely on the revolutionary energy of laughter?" wrapText="true" AnchorPane.bottomAnchor="711.3333333333334" AnchorPane.leftAnchor="546.0" AnchorPane.rightAnchor="529.3333333333335" AnchorPane.topAnchor="264.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="417.0" layoutY="453.0" prefHeight="45.0" prefWidth="700.0" styleClass="fonted-label" text="Navigate a 100-cell zigzag grid filled with" AnchorPane.bottomAnchor="582.3333333333334" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="803.6666666666665" AnchorPane.topAnchor="453.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="693.0" layoutY="385.0" prefHeight="45.0" prefWidth="551.0" styleClass="fonted-label" text="Game Overview" AnchorPane.bottomAnchor="650.9999999999999" AnchorPane.leftAnchor="693.0" AnchorPane.rightAnchor="677.0" AnchorPane.topAnchor="385.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="554.0" layoutY="655.0" prefHeight="35.0" prefWidth="491.0" styleClass="fonted-label" text="● Game-changing Cards" AnchorPane.bottomAnchor="390.33333333333326" AnchorPane.leftAnchor="554.0" AnchorPane.rightAnchor="875.3333333333335" AnchorPane.topAnchor="655.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="463.0" layoutY="619.0" prefHeight="35.0" prefWidth="757.0" styleClass="fonted-label" text="● Energy-collecting children's doors" AnchorPane.bottomAnchor="426.33333333333326" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="700.3333333333335" AnchorPane.topAnchor="619.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="534.0" layoutY="547.0" prefHeight="37.0" prefWidth="601.0" styleClass="fonted-label" text="● Powerful conveyor belt systems" AnchorPane.bottomAnchor="499.0" AnchorPane.leftAnchor="534.0" AnchorPane.rightAnchor="786.666666666667" AnchorPane.topAnchor="547.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="510.0" layoutY="582.0" prefHeight="37.0" prefWidth="648.0" styleClass="fonted-label" text="● Dangerous contamination socks" AnchorPane.bottomAnchor="461.33333333333326" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="763.3333333333333" AnchorPane.topAnchor="582.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="345.0" layoutY="690.0" prefHeight="59.0" prefWidth="1230.0" styleClass="fonted-label" text="Balance position and energy to become the first monster to reach Boo’s Door with at least 1000 energy." AnchorPane.bottomAnchor="331.33333333333326" AnchorPane.leftAnchor="345.0" AnchorPane.rightAnchor="345.0" AnchorPane.topAnchor="690.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="322.0" layoutY="740.0" prefHeight="59.0" prefWidth="1277.0" styleClass="fonted-label" text="Will you honor tradition with the power of screams, or revolutionize Monstropolis with theenergy of laughter?" AnchorPane.bottomAnchor="281.33333333333326" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="321.33333333333326" AnchorPane.topAnchor="740.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="548.0" layoutY="799.0" prefHeight="59.0" prefWidth="811.0" styleClass="fonted-label" text="The Floor awaits. Only one monster will emerge victorious." AnchorPane.bottomAnchor="222.33333333333337" AnchorPane.leftAnchor="548.0" AnchorPane.rightAnchor="561.3333333333333" AnchorPane.topAnchor="799.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
-</Pane>
+</AnchorPane>
