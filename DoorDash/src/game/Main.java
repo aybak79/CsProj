@@ -13,7 +13,8 @@ public class Main extends Application {
         Scene scene = new Scene(loader.load());
         primaryStage.setTitle("Door Dash");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitHint("");
         primaryStage.show();
     }
     
