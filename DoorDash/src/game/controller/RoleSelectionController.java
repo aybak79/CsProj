@@ -20,23 +20,26 @@ public class RoleSelectionController {
     @FXML private Button laugherButton;
 
     @FXML
-    private void handleScarer(ActionEvent event) {
-        startGame(Role.SCARER, event);
+    private void handleScarer() {
+        startGame(Role.SCARER);
     }
 
     @FXML
-    private void handleLaugher(ActionEvent event) {
-        startGame(Role.LAUGHER, event);
+    private void handleLaugher() {
+        startGame(Role.LAUGHER);
     }
 
-    private void startGame(Role role, ActionEvent event) {
+    private void startGame(Role role) {
         try {
             Game game = new Game(role);
             GameController.game = game;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/GameView.fxml"));
             Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) scarerButton.getScene().getWindow();
+            stage.setTitle("Door Dash");
             stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.setFullScreenExitHint("");
         }catch(InvalidCSVFormat e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Data Loading Error");

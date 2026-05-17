@@ -26,12 +26,11 @@
 
 .button:pressed {
     -fx-background-color: #1F56C2;
-    -fx-translate-y: 2px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
 }
 
 .button:selected {
-    -fx-background-color: #F4D35E;
+    fx-background-color: #F4D35E;
     -fx-text-fill: #1E1F2A;
     -fx-effect: dropshadow(gaussian, rgba(244,211,94,0.4), 15, 0.3, 0, 0);
 }

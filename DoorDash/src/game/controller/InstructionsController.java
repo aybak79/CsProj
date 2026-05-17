@@ -24,7 +24,7 @@ public class InstructionsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setTitle("Door Dash");
+            stage.setTitle("Main Menu");
             stage.setScene(scene);
             stage.setFullScreen(true);
             stage.setFullScreenExitHint("");
