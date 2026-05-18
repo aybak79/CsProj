@@ -40,7 +40,6 @@ public class StartScreenController {
     }
     
     private void layoutAll() {
-        System.out.println("Width: " + width + ", Height: " + height);
         title.setLayoutX(x(0.1943 - 0.043));
         title.setLayoutY(y(0.1176));
         buttons.setLayoutX(x(0.2655));
