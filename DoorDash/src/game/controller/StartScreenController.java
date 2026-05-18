@@ -2,12 +2,15 @@ package game.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
 
 public class StartScreenController {
 
@@ -18,6 +21,7 @@ public class StartScreenController {
     @FXML private Button instructions;
     @FXML private Button options;
     @FXML private Button exit;
+    @FXML private VBox buttons;
     private double width;
     private double height;
 
@@ -25,41 +29,20 @@ public class StartScreenController {
     @FXML
     public void initialize() {
         Font.loadFont(getClass().getResourceAsStream("/game/view/fonts/RussoOne.ttf"), 50);
-        root.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                newScene.windowProperty().addListener((obs2, oldWin, newWin) -> {
-                    if (newWin != null) {
-                        Stage stage = (Stage) newWin;
-                        stage.showingProperty().addListener((obs3, wasShowing, isShowing) -> {
-                            if (isShowing) {
-                                layoutAll();
-                            }
-                        });
-                        if (stage.isShowing()) {
-                            layoutAll();
-                        }
-                    }
-                });
-            }
-        });
+        Rectangle2D screen = Screen.getPrimary().getBounds();
+        width = screen.getWidth();
+        height = screen.getHeight();
+        root.setPrefWidth(width);
+        root.setPrefHeight(height);
+        layoutAll();
     }
     
     private void layoutAll() {
-        width = root.getScene().getWidth();
-        height = root.getScene().getHeight();
-
-        title.setLayoutX(x(0.1943 - 0.045));
+        System.out.println("Width: " + width + ", Height: " + height);
+        title.setLayoutX(x(0.1943 - 0.043));
         title.setLayoutY(y(0.1176));
-        singleplayer.setLayoutX(x(0.2922 - 0.028));
-        singleplayer.setLayoutY(y(0.4213));
-        multiplayer.setLayoutX(x(0.2922 - 0.028));
-        multiplayer.setLayoutY(y(0.5213));    
-        instructions.setLayoutX(x(0.2922 - 0.028));
-        instructions.setLayoutY(y(0.6213));
-        options.setLayoutX(x(0.2922 - 0.028));
-        options.setLayoutY(y(0.7213));
-        exit.setLayoutX(x(0.2922 - 0.028));
-        exit.setLayoutY(y(0.8213));
+        buttons.setLayoutX(x(0.2655));
+        buttons.setLayoutY(y(0.4481));
     }
     
     private double x(double percentX) { 

@@ -14,12 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
    <children>
-      <Pane fx:id="main" focusTraversable="true" layoutX="23.0" layoutY="-8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="1080.0" prefWidth="1920.0">
+      <Pane fx:id="main" focusTraversable="true" layoutX="302.0" layoutY="108.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="863.0" prefWidth="1316.0">
          <children>
-            <GridPane fx:id="board" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="498.5" layoutY="204.5" prefHeight="671.0" prefWidth="723.0" styleClass="board">
+            <GridPane fx:id="board" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="297.0" layoutY="154.0" prefHeight="671.0" prefWidth="723.0" styleClass="board">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1310,26 +1309,26 @@
                   </StackPane>
                </children>
             </GridPane>
-            <ImageView fx:id="dice" fitHeight="117.0" fitWidth="111.0" layoutX="628.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice" fitHeight="117.0" fitWidth="111.0" layoutX="398.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/6.png" />
                </image>
             </ImageView>
-               <Label fx:id="cardsCount" blendMode="SRC_ATOP" layoutX="1086.0" layoutY="167.0" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: black;" text="Cards: 25" />
+               <Label fx:id="cardsCount" blendMode="SRC_ATOP" layoutX="894.0" layoutY="116.0" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: black;" text="Cards: 25" />
       
-                  <VBox fx:id="cardPanel" alignment="TOP_CENTER" layoutX="803.0" layoutY="50.0" prefHeight="110.0" prefWidth="210.0" spacing="4" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;">
+                  <VBox fx:id="cardPanel" alignment="TOP_CENTER" layoutX="601.0" layoutY="7.0" prefHeight="110.0" prefWidth="210.0" spacing="4" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;">
             <children>
                <Label fx:id="cardTitle" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: gold; -fx-background-color: black;" text="No card drawn yet" wrapText="true" StackPane.alignment="TOP_CENTER" />
                <Label fx:id="cardType" style="-fx-font-size: 11px; -fx-text-fill: cyan; -fx-background-color: black; -fx-padding: 2 6 2 6; -fx-background-radius: 4;" text="" wrapText="true" StackPane.alignment="CENTER" />
                <Label fx:id="cardEffect" style="-fx-font-size: 11px; -fx-text-fill: white; -fx-background-color: black;" text="" wrapText="true" StackPane.alignment="CENTER" />
             </children>
       </VBox>
-            <ImageView fitHeight="125.0" fitWidth="136.0" layoutX="1052.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="125.0" fitWidth="136.0" layoutX="860.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/deck.png" />
                </image>
             </ImageView>
-            <VBox layoutX="1321.0" layoutY="132.0" prefHeight="863.0" prefWidth="186.0" styleClass="player-display">
+            <VBox layoutX="1130.0" prefHeight="863.0" prefWidth="186.0" styleClass="player-display">
                <children>
                   <Label text="Original Role" />
                   <TextField fx:id="opponentORole" alignment="TOP_CENTER" editable="false" prefHeight="17.0" prefWidth="54.0" styleClass="button" text="N/A" />
@@ -1393,7 +1392,7 @@
                   </Button>
                </children>
             </VBox>
-            <VBox layoutX="230.0" layoutY="132.0" prefHeight="863.0" prefWidth="186.0" styleClass="player-display">
+            <VBox prefHeight="863.0" prefWidth="186.0" styleClass="player-display">
                <children>
                   <Label text="Original Role" />
                   <TextField fx:id="playerORole" alignment="TOP_CENTER" editable="false" prefHeight="17.0" prefWidth="54.0" styleClass="button" text="N/A" />

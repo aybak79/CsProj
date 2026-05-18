@@ -5,19 +5,48 @@ import java.io.IOException;
 import game.engine.Game;
 import game.engine.Role;
 import game.engine.exceptions.InvalidCSVFormat;
-//import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-//import javafx.scene.Node;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class RoleSelectionController {
 
+    @FXML private Pane root;
     @FXML private Button scarerButton;
     @FXML private Button laugherButton;
+    @FXML private VBox buttons;
+    private double width;
+    private double height;
+
+    @FXML
+    public void initialize() {
+        Rectangle2D screen = Screen.getPrimary().getBounds();
+        width = screen.getWidth();
+        height = screen.getHeight();
+        root.setPrefWidth(width);
+        root.setPrefHeight(height);
+        layoutAll();
+    }
+
+    private void layoutAll() {
+        buttons.setLayoutX(x(0.1688));
+        buttons.setLayoutY(y(0.1907));
+    }
+    
+    private double x(double percentX) { 
+        return width * percentX; 
+    }
+
+    private double y(double percentY) { 
+        return height * percentY; 
+    }
 
     @FXML
     private void handleScarer() {

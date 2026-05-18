@@ -7,6 +7,7 @@ import game.engine.monsters.Monster;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import game.engine.cards.Card;
@@ -68,6 +70,9 @@ public class GameController {
     @FXML private Label errorMessage;
     @FXML private Button closeErrorButton;
     @FXML private Label errorMessageTitle;
+    @FXML private Pane root;
+    private double width;
+    private double height;
 
     private static final Image IMG_SULLIVAN = new Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
     private static final Image IMG_WAZOWSKI = new Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
@@ -86,8 +91,12 @@ public class GameController {
     public void initialize() {
         main.requestFocus();
         errorOverlay.setVisible(false);
-        errorOverlay.setLayoutX(650);
-        errorOverlay.setLayoutY(400);
+        Rectangle2D screen = Screen.getPrimary().getBounds();
+        width = screen.getWidth();
+        height = screen.getHeight();
+        root.setPrefWidth(width);
+        root.setPrefHeight(height);
+        layoutAll();
         playerORole.setText(game.getPlayer().getOriginalRole().toString());
         playerType.setText(game.getPlayer().getClass().getSimpleName());
         playerName.setText(game.getPlayer().getName());
@@ -99,6 +108,20 @@ public class GameController {
         updateUI(new TurnResult(0, null, false, false));
         prevPlayerEnergy = game.getPlayer().getEnergy();
         prevOpponentEnergy = game.getOpponent().getEnergy();
+    }
+    private void layoutAll() {
+        main.setLayoutX(x(0.1143));
+        main.setLayoutY(y(0.0956));
+        errorOverlay.setLayoutX(x(0.3775));
+        errorOverlay.setLayoutY(y(0.3768));
+    }
+    
+    private double x(double percentX) { 
+        return width * percentX; 
+    }
+
+    private double y(double percentY) { 
+        return height * percentY; 
     }
 
     private void updateUI(TurnResult turnResult) {

@@ -3,16 +3,22 @@ package game.controller;
 import game.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class OptionsController {
     @FXML private Pane root;
     @FXML private Button back;
     @FXML private Slider volume;
+    @FXML private VBox buttons;
+    private double width;
+    private double height;
 
     @FXML
     public void initialize() { 
@@ -21,6 +27,25 @@ public class OptionsController {
                 Main.mediaPlayer.setVolume(newVal.doubleValue());
             }
         });
+        Rectangle2D screen = Screen.getPrimary().getBounds();
+        width = screen.getWidth();
+        height = screen.getHeight();
+        root.setPrefWidth(width);
+        root.setPrefHeight(height);
+        layoutAll();
+    }
+
+    private void layoutAll() {
+        buttons.setLayoutX(x(0.4));
+        buttons.setLayoutY(y(0.21));
+    }
+    
+    private double x(double percentX) { 
+        return width * percentX; 
+    }
+
+    private double y(double percentY) { 
+        return height * percentY; 
     }
 
     @FXML
