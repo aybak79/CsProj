@@ -8,6 +8,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    public static MediaPlayer mediaPlayer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -15,9 +16,10 @@ public class Main extends Application {
         Scene scene = new Scene(loader.load());
         String musicFile = getClass().getResource("/game/view/music/menu.mp3").toExternalForm();
         Media sound = new Media(musicFile);
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        Main.mediaPlayer = new MediaPlayer(sound);
+        Main.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        Main.mediaPlayer.setVolume(0);
+        Main.mediaPlayer.play();
         primaryStage.setTitle("Main Menu");
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitHint("");
