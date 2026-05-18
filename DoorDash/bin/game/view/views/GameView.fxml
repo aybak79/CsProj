@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="midnight-theme" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
    <children>
-      <Pane fx:id="main" focusTraversable="true" layoutX="302.0" layoutY="108.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="863.0" prefWidth="1316.0">
+      <Pane fx:id="main" focusTraversable="true" layoutX="302.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="860.0" prefWidth="1316.0">
          <children>
             <GridPane fx:id="board" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="297.0" layoutY="154.0" prefHeight="671.0" prefWidth="723.0" styleClass="board">
               <columnConstraints>
@@ -51,7 +51,7 @@
                               <Image url="@../assets/final-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="99" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="100" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -65,7 +65,7 @@
                               <Image url="@../assets/sock.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="98" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="99" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -76,10 +76,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="97" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="98" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -88,7 +88,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="96" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="97" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -102,7 +102,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="95" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="96" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -111,7 +111,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="94" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="95" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -122,10 +122,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="93" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="94" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -134,7 +134,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="92" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="93" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -148,7 +148,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="91" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="92" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -162,7 +162,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="90" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="91" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -171,7 +171,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="80" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="81" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -185,7 +185,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="79" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="80" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -194,7 +194,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="60" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="61" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -208,7 +208,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="59" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="60" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -222,7 +222,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="40" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="41" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -236,7 +236,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="39" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="40" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -250,7 +250,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="20" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="21" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -264,7 +264,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="19" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="20" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -273,7 +273,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="9">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="0" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="1" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -297,10 +297,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="81" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="82" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -309,7 +309,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="78" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="79" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -320,10 +320,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="61" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="62" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -332,7 +332,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="58" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="59" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -343,10 +343,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="41" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="42" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -355,7 +355,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="38" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="39" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -366,19 +366,19 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="21" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="22" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="18" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="19" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -387,7 +387,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="82" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="83" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -398,10 +398,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="77" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="78" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -410,7 +410,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="62" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="63" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -421,10 +421,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="57" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="58" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -438,7 +438,7 @@
                               <Image url="@../assets/sock.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="42" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="43" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -449,10 +449,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="37" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="38" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -461,7 +461,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="belt" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="22" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="23" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -477,10 +477,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="17" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="18" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -489,7 +489,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="2" GridPane.rowIndex="9">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="2" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="3" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -503,7 +503,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="83" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="84" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -517,7 +517,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="76" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="77" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -531,7 +531,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="63" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="64" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -545,7 +545,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="56" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="57" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -559,7 +559,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="43" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="44" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -568,16 +568,16 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="6">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="36" StackPane.alignment="TOP_LEFT">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
                         <ImageView fitHeight="52.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="37" StackPane.alignment="TOP_LEFT">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
@@ -587,7 +587,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="23" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="24" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -596,7 +596,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="8">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="16" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="17" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -610,7 +610,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="3" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="4" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -624,7 +624,7 @@
                               <Image url="@../assets/sock.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="84" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="85" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -638,7 +638,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="75" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="76" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -647,7 +647,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="64" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="65" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -661,7 +661,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="55" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="56" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -670,7 +670,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="belt" GridPane.columnIndex="4" GridPane.rowIndex="5">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="44" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="45" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -689,7 +689,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="35" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="36" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -698,7 +698,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="24" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="25" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -712,7 +712,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="15" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="16" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -726,7 +726,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="4" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="5" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -737,10 +737,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="85" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="86" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -754,7 +754,7 @@
                               <Image url="@../assets/sock.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="74" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="75" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -765,10 +765,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="65" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="66" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -777,7 +777,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="54" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="55" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -788,10 +788,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="45" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="46" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -800,7 +800,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="5" GridPane.rowIndex="6">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="34" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="35" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -811,10 +811,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="25" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="26" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -823,7 +823,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="8">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="14" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="15" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -834,10 +834,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="5" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="6" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -851,7 +851,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="86" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="87" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -862,10 +862,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="73" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="74" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -874,7 +874,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="belt" GridPane.columnIndex="6" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="66" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="67" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -890,10 +890,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="53" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="54" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -902,7 +902,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="46" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="47" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -913,10 +913,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="33" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="34" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -925,7 +925,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="7">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="26" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="27" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -936,10 +936,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="13" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="14" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -948,7 +948,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="belt" GridPane.columnIndex="6" GridPane.rowIndex="9">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="6" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="7" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -967,7 +967,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="87" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="88" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -976,7 +976,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="monster" GridPane.columnIndex="8" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="88" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="89" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -987,10 +987,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="89" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="90" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -999,7 +999,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="72" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="73" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1013,7 +1013,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="71" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="72" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1022,7 +1022,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="70" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="71" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1036,7 +1036,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="67" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="68" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1050,7 +1050,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="68" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="69" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1061,10 +1061,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="69" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="70" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1073,7 +1073,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="belt" GridPane.columnIndex="7" GridPane.rowIndex="4">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="52" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="53" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1092,7 +1092,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="51" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="52" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1101,7 +1101,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="4">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="50" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="51" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1115,7 +1115,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="47" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="48" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1124,7 +1124,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="48" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="49" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1135,10 +1135,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="49" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="50" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1152,7 +1152,7 @@
                               <Image url="@../assets/sock.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="32" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="33" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1166,7 +1166,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="31" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="32" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1175,7 +1175,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="6">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="30" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="31" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1189,7 +1189,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="27" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="28" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1198,7 +1198,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="28" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="29" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1209,10 +1209,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="29" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="30" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1221,7 +1221,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="8">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="10" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="11" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1235,7 +1235,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="11" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="12" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1249,7 +1249,7 @@
                               <Image url="@../assets/card.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="12" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="13" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1263,7 +1263,7 @@
                               <Image url="@../assets/door-open.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="7" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="8" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1272,7 +1272,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9">
                      <children>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="8" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="9" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1283,10 +1283,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="9" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="10" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1297,10 +1297,10 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/door-open.png" />
+                              <Image url="@../assets/other-door.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_LEFT" styleClass="index-label" text="1" StackPane.alignment="TOP_LEFT">
+                        <Label alignment="TOP_LEFT" styleClass="index-label" text="2" StackPane.alignment="TOP_LEFT">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -1314,12 +1314,12 @@
                   <Image url="@../assets/6.png" />
                </image>
             </ImageView>
-               <Label fx:id="cardsCount" blendMode="SRC_ATOP" layoutX="894.0" layoutY="116.0" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: black;" text="Cards: 25" />
+               <Label fx:id="cardsCount" blendMode="SRC_ATOP" layoutX="894.0" layoutY="116.0" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: black;" styleClass="something" text="Cards: 25" />
       
                   <VBox fx:id="cardPanel" alignment="TOP_CENTER" layoutX="601.0" layoutY="7.0" prefHeight="110.0" prefWidth="210.0" spacing="4" style="-fx-background-color: rgba(0,0,0,0.65); -fx-background-radius: 10; -fx-padding: 8;">
             <children>
-               <Label fx:id="cardTitle" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: gold; -fx-background-color: black;" text="No card drawn yet" wrapText="true" StackPane.alignment="TOP_CENTER" />
-               <Label fx:id="cardType" style="-fx-font-size: 11px; -fx-text-fill: cyan; -fx-background-color: black; -fx-padding: 2 6 2 6; -fx-background-radius: 4;" text="" wrapText="true" StackPane.alignment="CENTER" />
+               <Label fx:id="cardTitle" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: gold; -fx-background-color: black;" styleClass="something" text="No card drawn yet" wrapText="true" StackPane.alignment="TOP_CENTER" />
+               <Label fx:id="cardType" style="-fx-font-size: 11px; -fx-text-fill: cyan; -fx-background-color: black; -fx-padding: 2 6 2 6; -fx-background-radius: 4;" styleClass="something" text="" wrapText="true" StackPane.alignment="CENTER" />
                <Label fx:id="cardEffect" style="-fx-font-size: 11px; -fx-text-fill: white; -fx-background-color: black;" text="" wrapText="true" StackPane.alignment="CENTER" />
             </children>
       </VBox>
@@ -1328,7 +1328,7 @@
                   <Image url="@../assets/deck.png" />
                </image>
             </ImageView>
-            <VBox layoutX="1130.0" prefHeight="863.0" prefWidth="186.0" styleClass="player-display">
+            <VBox layoutX="1130.0" prefHeight="860.0" prefWidth="186.0" styleClass="player-display">
                <children>
                   <Label text="Original Role" />
                   <TextField fx:id="opponentORole" alignment="TOP_CENTER" editable="false" prefHeight="17.0" prefWidth="54.0" styleClass="button" text="N/A" />
@@ -1361,6 +1361,7 @@
                               <Image url="@../assets/shield.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="opponentConfusionTurns" layoutX="28.0" layoutY="17.0" text="0" />
                      </children>
                   </Pane>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -1380,19 +1381,20 @@
                         <Insets left="55.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="opponentRollButton" mnemonicParsing="false" onAction="#handleOpponentRoll" prefHeight="40.0" prefWidth="150.0" text="Roll Dice">
+                  <Button fx:id="opponentRollButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleOpponentRoll" prefHeight="40.0" prefWidth="150.0" text="Roll Dice">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="opponentActivateButton" mnemonicParsing="false" onAction="#handleOpponentPowerup" prefHeight="40.0" prefWidth="150.0" text="Activate Powerup">
+                  <Button fx:id="opponentActivateButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleOpponentPowerup" prefHeight="40.0" prefWidth="150.0" text="Activate Powerup">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
+                  <Label fx:id="opponentPower" text="Powered Up Turns: " />
                </children>
             </VBox>
-            <VBox prefHeight="863.0" prefWidth="186.0" styleClass="player-display">
+            <VBox prefHeight="860.0" prefWidth="186.0" styleClass="player-display">
                <children>
                   <Label text="Original Role" />
                   <TextField fx:id="playerORole" alignment="TOP_CENTER" editable="false" prefHeight="17.0" prefWidth="54.0" styleClass="button" text="N/A" />
@@ -1425,6 +1427,7 @@
                               <Image url="@../assets/shield.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="playerConfusionTurns" layoutX="129.0" layoutY="5.0" text="0" />
                      </children>
                   </Pane>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -1444,8 +1447,9 @@
                         <Insets left="55.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="playerRollButton" mnemonicParsing="false" onAction="#handlePlayerRoll" prefHeight="40.0" prefWidth="150.0" text="Roll Dice" />
-                  <Button fx:id="playerActivateButton" mnemonicParsing="false" onAction="#handlePlayerPowerup" prefHeight="40.0" prefWidth="150.0" text="Activate Powerup" />
+                  <Button fx:id="playerRollButton" focusTraversable="false" mnemonicParsing="false" onAction="#handlePlayerRoll" prefHeight="40.0" prefWidth="150.0" text="Roll Dice" />
+                  <Button fx:id="playerActivateButton" focusTraversable="false" mnemonicParsing="false" onAction="#handlePlayerPowerup" prefHeight="40.0" prefWidth="150.0" text="Activate Powerup" />
+                  <Label fx:id="playerPower" text="Powered Up Turns: " />
                </children>
             </VBox>
          </children>

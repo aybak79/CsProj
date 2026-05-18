@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.Main;
 import game.engine.Game;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,8 @@ public class GameOverController {
     private double height;
     
     @FXML public void initialize() {
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
         Game game = GameController.game;
         winner.setText("(" + game.getWinner().getOriginalRole().toString() + ") " + game.getWinner().getName());
         playerFinalEnergy.setText("" + game.getPlayer().getEnergy());

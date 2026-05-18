@@ -21,7 +21,9 @@ public class OptionsController {
     private double height;
 
     @FXML
-    public void initialize() { 
+    public void initialize() {
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
         volume.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (Main.mediaPlayer != null) {
                 Main.mediaPlayer.setVolume(newVal.doubleValue());
@@ -54,9 +56,31 @@ public class OptionsController {
     }
 
     @FXML
-    private void handleTheme() {
-        // navigate back to the start screen
-        loadScene("/game/view/views/StartView.fxml");
+    private void handleMidnight() {
+        Main.preferedTheme = "midnight-theme";
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
+    }
+
+    @FXML
+    private void handleForest() {
+        Main.preferedTheme = "forest-theme";
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
+    }
+
+    @FXML
+    private void handleInc() {
+        Main.preferedTheme = "monsterinc-theme";
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
+    }
+
+    @FXML
+    private void handleSunset() {
+        Main.preferedTheme = "sunset-theme";
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
     }
 
     private void loadScene(String fxmlPath) {

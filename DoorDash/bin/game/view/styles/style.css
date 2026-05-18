@@ -1,53 +1,17 @@
-.root {
-    -fx-background-color: linear-gradient(
-        from 0% 0% to 100% 100%,
-        #1E1F2A,
-        #12131A
-    );
-}
-
-.button {
-    -fx-background-color: #3A86FF;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;  
-    -fx-background-radius: 12;
-    -fx-padding: 10 20 10 20;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.3, 0, 4);
-    -fx-border-color: rgba(255,255,255,0.15);
-    -fx-border-width: 1;
-    -fx-border-radius: 12;
-}
-
-.button:hover {
-    -fx-background-color: #2F6FDB;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.35, 0, 6);
-    -fx-border-color: rgba(255,255,255,0.35);
-}
-
-.button:pressed {
-    -fx-background-color: #1F56C2;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
-}
-
-.button:selected {
-    fx-background-color: #F4D35E;
-    -fx-text-fill: #1E1F2A;
-    -fx-effect: dropshadow(gaussian, rgba(244,211,94,0.4), 15, 0.3, 0, 0);
-}
-
-.label {
-    -fx-text-fill: #F4D35E;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.4, 0, 3);
-    -fx-effect: dropshadow(gaussian, rgba(244,211,94,0.35), 20, 0.3, 0, 0);
-}
-
 .card {
     -fx-background-color: #e32828;
 }
 
 .monster {
     -fx-background-color: #3d9bd9;
+}
+
+.laugher-monster {
+    -fx-background-color: white;
+}
+
+.scarer-monster {
+    -fx-background-color: black;
 }
 
 .belt {
@@ -58,7 +22,6 @@
     -fx-background-color: #ffe100;
 }
 
-
 .index-label {
     -fx-font-size: 15px;
     -fx-text-fill: black;
@@ -68,71 +31,6 @@
 
 .fonted-label {
     -fx-font-family: "Russo One";
-}
-
-.board {
-    -fx-background-color: linear-gradient(
-        from 0% 0% to 100% 100%,
-        #E6C79C,
-        #C89B6D
-    );
-    -fx-border-color: #6B4F3A;
-    -fx-border-width: 4;
-    -fx-border-radius: 8;
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(0,0,0,0.35),
-        15,
-        0.3,
-        0,
-        5
-    );
-}
-
-.player-display {
-    -fx-background-color: #2A2D3E;
-
-    -fx-background-radius: 18;
-    -fx-border-radius: 18;
-
-    -fx-border-color: rgba(255,255,255,0.08);
-    -fx-border-width: 1.5;
-
-    -fx-padding: 18;
-    -fx-spacing: 12;
-
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(0,0,0,0.4),
-        18,
-        0.3,
-        0,
-        6
-    );
-}
-
-.player-display .label {
-    -fx-text-fill: #F5F7FA;
-
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-.player-display .button {
-    -fx-background-color: #3A86FF;
-
-    -fx-text-fill: white;
-
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-
-    -fx-background-radius: 10;
-
-    -fx-padding: 8 14 8 14;
-}
-
-.player-display .button:hover {
-    -fx-background-color: #2F6FDB;
 }
 
 .error {
@@ -175,4 +73,878 @@
 .error .button:pressed {
     -fx-background-color: #962A34;
     -fx-translate-y: 1px;
+}
+
+
+
+
+
+
+.midnight-theme {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #1E1F2A,
+        #12131A
+    );
+}
+
+.midnight-theme .slider .track {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-background-radius: 4;
+}
+
+.midnight-theme .slider .thumb {
+    -fx-background-color: #3A86FF;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.3, 0, 2);
+}
+
+.midnight-theme .slider:hover .thumb {
+    -fx-background-color: #2F6FDB;
+}
+
+.midnight-theme .button {
+    -fx-background-color: #3A86FF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        10,
+        0.3,
+        0,
+        4
+    );
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.midnight-theme .button:hover {
+    -fx-background-color: #2F6FDB;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.55),
+        14,
+        0.35,
+        0,
+        6
+    );
+    -fx-border-color: rgba(255,255,255,0.35);
+}
+
+.midnight-theme .button:pressed {
+    -fx-background-color: #1F56C2;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.3),
+        6,
+        0.2,
+        0,
+        2
+    );
+}
+
+.midnight-theme .button:selected {
+    -fx-background-color: #F4D35E;
+    -fx-text-fill: #1E1F2A;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(244,211,94,0.4),
+        15,
+        0.3,
+        0,
+        0
+    );
+}
+
+.midnight-theme .something {
+    -fx-text-fill: #F4D35E;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(244,211,94,0.35),
+        20,
+        0.3,
+        0,
+        0
+    );
+}
+
+.midnight-theme .player-display {
+    -fx-background-color: #2A2D3E;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        18,
+        0.3,
+        0,
+        6
+    );
+}
+
+.midnight-theme .player-display .label {
+    -fx-text-fill: #F5F7FA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.midnight-theme .player-display .button {
+    -fx-background-color: #3A86FF;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+}
+
+.midnight-theme .player-display .button:hover {
+    -fx-background-color: #2F6FDB;
+}
+
+.midnight-theme .board {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #E6C79C,
+        #C89B6D
+    );
+    -fx-border-color: #6B4F3A;
+    -fx-border-width: 4;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.35),
+        15,
+        0.3,
+        0,
+        5
+    );
+}
+
+.laugher {
+
+}
+.scarer {
+    
+}
+
+
+
+.monsterinc-theme {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #1B3A6B,
+        #0D1F3C
+    );
+}
+
+.monsterinc-theme .slider .track {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-background-radius: 4;
+}
+.monsterinc-theme .slider .thumb {
+    -fx-background-color: #00B4D8;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.3, 0, 2);
+}
+
+.monsterinc-theme .button {
+    -fx-background-color: #00B4D8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        10,
+        0.3,
+        0,
+        4
+    );
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.monsterinc-theme .button:hover {
+    -fx-background-color: #0096B4;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.55),
+        14,
+        0.35,
+        0,
+        6
+    );
+    -fx-border-color: rgba(255,255,255,0.35);
+}
+
+.monsterinc-theme .button:pressed {
+    -fx-background-color: #007A94;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.3),
+        6,
+        0.2,
+        0,
+        2
+    );
+}
+
+.monsterinc-theme .button:selected {
+    -fx-background-color: #A8E063;
+    -fx-text-fill: #1B3A6B;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(168,224,99,0.4),
+        15,
+        0.3,
+        0,
+        0
+    );
+}
+
+.monsterinc-theme .something {
+    -fx-text-fill: #A8E063;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(168,224,99,0.35),
+        20,
+        0.3,
+        0,
+        0
+    );
+}
+
+.monsterinc-theme .player-display {
+    -fx-background-color: #162D54;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        18,
+        0.3,
+        0,
+        6
+    );
+}
+
+.monsterinc-theme .player-display .label {
+    -fx-text-fill: #E0F7FA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.monsterinc-theme .player-display .button {
+    -fx-background-color: #00B4D8;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+}
+
+.monsterinc-theme .player-display .button:hover {
+    -fx-background-color: #0096B4;
+}
+
+.monsterinc-theme .board {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #B8D9F0,
+        #8BBDD9
+    );
+    -fx-border-color: #1B3A6B;
+    -fx-border-width: 4;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.35),
+        15,
+        0.3,
+        0,
+        5
+    );
+}
+
+.midnight-theme .menu-button {
+    -fx-background-color: #3A86FF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.3, 0, 4);
+}
+
+.midnight-theme .menu-button:hover {
+    -fx-background-color: #2F6FDB;
+    -fx-border-color: rgba(255,255,255,0.35);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.35, 0, 6);
+}
+
+.midnight-theme .menu-button:pressed,
+.midnight-theme .menu-button:showing {
+    -fx-background-color: #1F56C2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
+}
+
+.midnight-theme .menu-button .arrow {
+    -fx-background-color: white;
+}
+
+.midnight-theme .menu-button .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.midnight-theme .context-menu {
+    -fx-background-color: #2A2D3E;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0.3, 0, 6);
+}
+
+.midnight-theme .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 8;
+}
+
+.midnight-theme .menu-item .label {
+    -fx-text-fill: #F5F7FA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: none;
+}
+
+.midnight-theme .menu-item:hover,
+.midnight-theme .menu-item:focused {
+    -fx-background-color: #3A86FF;
+    -fx-background-radius: 8;
+}
+
+.midnight-theme .menu-item:hover .label,
+.midnight-theme .menu-item:focused .label {
+    -fx-text-fill: white;
+}
+.monsterinc-theme .menu-button {
+    -fx-background-color: #00B4D8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.3, 0, 4);
+}
+
+.monsterinc-theme .menu-button:hover {
+    -fx-background-color: #0096B4;
+    -fx-border-color: rgba(255,255,255,0.35);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.35, 0, 6);
+}
+
+.monsterinc-theme .menu-button:pressed,
+.monsterinc-theme .menu-button:showing {
+    -fx-background-color: #007A94;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
+}
+
+.monsterinc-theme .menu-button .arrow {
+    -fx-background-color: white;
+}
+
+.monsterinc-theme .menu-button .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.monsterinc-theme .context-menu {
+    -fx-background-color: #162D54;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0.3, 0, 6);
+}
+
+.monsterinc-theme .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 8;
+}
+
+.monsterinc-theme .menu-item .label {
+    -fx-text-fill: #E0F7FA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: none;
+}
+
+.monsterinc-theme .menu-item:hover,
+.monsterinc-theme .menu-item:focused {
+    -fx-background-color: #00B4D8;
+    -fx-background-radius: 8;
+}
+
+.monsterinc-theme .menu-item:hover .label,
+.monsterinc-theme .menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+
+
+
+
+
+
+
+
+.sunset-theme {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #FF6B6B,
+        #FFE66D
+    );
+}
+
+.sunset-theme .slider .track {
+    -fx-background-color: rgba(44,62,80,0.3);
+    -fx-background-radius: 4;
+}
+.sunset-theme .slider .thumb {
+    -fx-background-color: #FF4757;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.3, 0, 2);
+}
+
+.sunset-theme .button {
+    -fx-background-color: #FF4757;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        10,
+        0.3,
+        0,
+        4
+    );
+    -fx-border-color: rgba(255,255,255,0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.sunset-theme .button:hover {
+    -fx-background-color: #E03D4E;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.55),
+        14,
+        0.35,
+        0,
+        6
+    );
+    -fx-border-color: rgba(255,255,255,0.5);
+}
+
+.sunset-theme .button:pressed {
+    -fx-background-color: #C0293A;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.3),
+        6,
+        0.2,
+        0,
+        2
+    );
+}
+
+.sunset-theme .button:selected {
+    -fx-background-color: #2C3E50;
+    -fx-text-fill: #FFE66D;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(44,62,80,0.4),
+        15,
+        0.3,
+        0,
+        0
+    );
+}
+
+.sunset-theme .something {
+    -fx-text-fill: #2C3E50;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(44,62,80,0.35),
+        20,
+        0.3,
+        0,
+        0
+    );
+}
+
+.sunset-theme .player-display {
+    -fx-background-color: rgba(255,255,255,0.35);
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(255,255,255,0.5);
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.2),
+        18,
+        0.3,
+        0,
+        6
+    );
+}
+
+.sunset-theme .player-display .label {
+    -fx-text-fill: #2C3E50;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.sunset-theme .player-display .button {
+    -fx-background-color: #FF4757;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+}
+
+.sunset-theme .player-display .button:hover {
+    -fx-background-color: #E03D4E;
+}
+
+.sunset-theme .board {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #FFF3CD,
+        #FFE08A
+    );
+    -fx-border-color: #C0392B;
+    -fx-border-width: 4;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.35),
+        15,
+        0.3,
+        0,
+        5
+    );
+}
+.sunset-theme .menu-button {
+    -fx-background-color: #FF4757;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: rgba(255,255,255,0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.3, 0, 4);
+}
+
+.sunset-theme .menu-button:hover {
+    -fx-background-color: #E03D4E;
+    -fx-border-color: rgba(255,255,255,0.5);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.35, 0, 6);
+}
+
+.sunset-theme .menu-button:pressed,
+.sunset-theme .menu-button:showing {
+    -fx-background-color: #C0293A;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
+}
+
+.sunset-theme .menu-button .arrow {
+    -fx-background-color: white;
+}
+
+.sunset-theme .menu-button .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.sunset-theme .context-menu {
+    -fx-background-color: rgba(255,255,255,0.92);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255,71,87,0.3);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0.3, 0, 6);
+}
+
+.sunset-theme .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 8;
+}
+
+.sunset-theme .menu-item .label {
+    -fx-text-fill: #2C3E50;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: none;
+}
+
+.sunset-theme .menu-item:hover,
+.sunset-theme .menu-item:focused {
+    -fx-background-color: #FF4757;
+    -fx-background-radius: 8;
+}
+
+.sunset-theme .menu-item:hover .label,
+.sunset-theme .menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+
+
+
+
+
+
+
+
+
+.forest-theme {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #2D5A27,
+        #1A3318
+    );
+}
+
+.forest-theme .slider .track {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-background-radius: 4;
+}
+.forest-theme .slider .thumb {
+    -fx-background-color: #52B788;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.3, 0, 2);
+}
+
+.forest-theme .button {
+    -fx-background-color: #52B788;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        10,
+        0.3,
+        0,
+        4
+    );
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.forest-theme .button:hover {
+    -fx-background-color: #40916C;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.55),
+        14,
+        0.35,
+        0,
+        6
+    );
+    -fx-border-color: rgba(255,255,255,0.35);
+}
+
+.forest-theme .button:pressed {
+    -fx-background-color: #2D6A4F;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.3),
+        6,
+        0.2,
+        0,
+        2
+    );
+}
+
+.forest-theme .button:selected {
+    -fx-background-color: #D4A017;
+    -fx-text-fill: #1A3318;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(212,160,23,0.4),
+        15,
+        0.3,
+        0,
+        0
+    );
+}
+
+.forest-theme .something {
+    -fx-text-fill: #D4A017;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(212,160,23,0.35),
+        20,
+        0.3,
+        0,
+        0
+    );
+}
+
+.forest-theme .player-display {
+    -fx-background-color: #1E3D1A;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.4),
+        18,
+        0.3,
+        0,
+        6
+    );
+}
+
+.forest-theme .player-display .label {
+    -fx-text-fill: #D8F3DC;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.forest-theme .player-display .button {
+    -fx-background-color: #52B788;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+}
+
+.forest-theme .player-display .button:hover {
+    -fx-background-color: #40916C;
+}
+
+.forest-theme .board {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 100%,
+        #D4E9C7,
+        #B5CFA0
+    );
+    -fx-border-color: #2D5A27;
+    -fx-border-width: 4;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.35),
+        15,
+        0.3,
+        0,
+        5
+    );
+}
+
+.forest-theme .menu-button {
+    -fx-background-color: #52B788;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.3, 0, 4);
+}
+
+.forest-theme .menu-button:hover {
+    -fx-background-color: #40916C;
+    -fx-border-color: rgba(255,255,255,0.35);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.35, 0, 6);
+}
+
+.forest-theme .menu-button:pressed,
+.forest-theme .menu-button:showing {
+    -fx-background-color: #2D6A4F;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
+}
+
+.forest-theme .menu-button .arrow {
+    -fx-background-color: white;
+}
+
+.forest-theme .menu-button .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.forest-theme .context-menu {
+    -fx-background-color: #1E3D1A;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0.3, 0, 6);
+}
+
+.forest-theme .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 8;
+}
+
+.forest-theme .menu-item .label {
+    -fx-text-fill: #D8F3DC;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: none;
+}
+
+.forest-theme .menu-item:hover,
+.forest-theme .menu-item:focused {
+    -fx-background-color: #52B788;
+    -fx-background-radius: 8;
+}
+
+.forest-theme .menu-item:hover .label,
+.forest-theme .menu-item:focused .label {
+    -fx-text-fill: white;
 }

@@ -2,6 +2,7 @@ package game.controller;
 
 import java.io.IOException;
 
+import game.Main;
 import game.engine.Game;
 import game.engine.Role;
 import game.engine.exceptions.InvalidCSVFormat;
@@ -27,6 +28,8 @@ public class RoleSelectionController {
 
     @FXML
     public void initialize() {
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
         Rectangle2D screen = Screen.getPrimary().getBounds();
         width = screen.getWidth();
         height = screen.getHeight();

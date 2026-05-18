@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.RoleSelectionController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="midnight-theme" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.RoleSelectionController">
    <children>
       <VBox fx:id="buttons" layoutX="395.0" layoutY="210.0" prefHeight="660.0" prefWidth="1130.0">
          <children>
-            <Label alignment="CENTER" prefHeight="330.0" prefWidth="1130.0" text="Choose Your Role">
+            <Label alignment="CENTER" prefHeight="330.0" prefWidth="1130.0" styleClass="something" text="Choose Your Role">
                <font>
                   <Font size="100.0" />
                </font>

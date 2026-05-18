@@ -11,14 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.OptionsController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="midnight-theme" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.OptionsController">
    <children>
       <VBox fx:id="buttons" layoutX="789.0" layoutY="231.0" prefHeight="618.0" prefWidth="342.0">
          <children>
-            <MenuButton fx:id="theme" focusTraversable="false" mnemonicParsing="false" onAction="#handleTheme" prefHeight="50.0" prefWidth="120.0" styleClass="button" text="Theme">
+            <MenuButton focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: black;" text="Theme" textFill="WHITE">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMidnight" text="Midnight" />
+                <MenuItem mnemonicParsing="false" onAction="#handleInc" text="Monster Inc" />
+                <MenuItem mnemonicParsing="false" onAction="#handleSunset" text="Sunset" />
+                <MenuItem mnemonicParsing="false" onAction="#handleForest" text="Forest" />
               </items>
                <font>
                   <Font size="20.0" />
@@ -29,7 +31,7 @@
             </MenuButton>
             <HBox prefHeight="48.0" prefWidth="253.0">
                <children>
-                  <Label text="Volume">
+                  <Label styleClass="something" text="Volume">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -46,7 +48,7 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="back" mnemonicParsing="false" onAction="#handleBack" prefHeight="146.0" prefWidth="492.0" text="Back to Main Menu">
+            <Button fx:id="back" focusTraversable="false" mnemonicParsing="false" onAction="#handleBack" prefHeight="146.0" prefWidth="492.0" text="Back to Main Menu">
                <font>
                   <Font size="25.0" />
                </font>

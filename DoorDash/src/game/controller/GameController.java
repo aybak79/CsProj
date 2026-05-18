@@ -1,9 +1,14 @@
 package game.controller;
 
+import game.Main;
 import game.engine.Board;
+import game.engine.Constants;
 import game.engine.Game;
+import game.engine.Role;
 import game.engine.TurnResult;
+import game.engine.monsters.Dasher;
 import game.engine.monsters.Monster;
+import game.engine.monsters.MultiTasker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +43,8 @@ public class GameController {
     @FXML private Button playerActivateButton;
     @FXML private Button opponentRollButton;
     @FXML private Button opponentActivateButton;
+    @FXML private Label opponentConfusionTurns;
+    @FXML private Label playerConfusionTurns;
     @FXML private TextField playerORole;
     @FXML private TextField playerCRole;
     @FXML private TextField playerType;
@@ -55,9 +62,11 @@ public class GameController {
     @FXML private ImageView playerShield;
     @FXML private ImageView playerFreeze;
     @FXML private ImageView playerConfusion;
+    @FXML private Label playerPower;
     @FXML private ImageView opponentShield;
     @FXML private ImageView opponentFreeze;
     @FXML private ImageView opponentConfusion;
+    @FXML private Label opponentPower;
     @FXML private ImageView playerSelector;
     @FXML private ImageView opponentSelector;
     @FXML private Label cardsCount;
@@ -84,12 +93,11 @@ public class GameController {
     private static final Image IMG_YETI     = new Image(GameController.class.getResourceAsStream("/game/view/assets/Yeti.png"));
     private int prevPlayerEnergy;
     private int prevOpponentEnergy;
-    private boolean playerPowerupUsed = false;
-    private boolean opponentPowerupUsed = false;
-
     @FXML
     public void initialize() {
         main.requestFocus();
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
         errorOverlay.setVisible(false);
         Rectangle2D screen = Screen.getPrimary().getBounds();
         width = screen.getWidth();
@@ -111,7 +119,7 @@ public class GameController {
     }
     private void layoutAll() {
         main.setLayoutX(x(0.1143));
-        main.setLayoutY(y(0.0956));
+        main.setLayoutY(y(0.097));
         errorOverlay.setLayoutX(x(0.3775));
         errorOverlay.setLayoutY(y(0.3768));
     }
@@ -137,12 +145,23 @@ public class GameController {
         playerShield.setVisible(game.getPlayer().isShielded());
         playerFreeze.setVisible(game.getPlayer().isFrozen());
         playerConfusion.setVisible(game.getPlayer().isConfused());
+        playerConfusionTurns.setVisible(playerConfusion.isVisible());
+        playerConfusionTurns.setText("" + game.getPlayer().getConfusionTurns());
+        if(game.getPlayer() instanceof MultiTasker) {
+            playerPower.setText("Powered Up Turns: " + ((MultiTasker)game.getPlayer()).getNormalSpeedTurns());
+        } else if(game.getPlayer() instanceof Dasher) {
+            playerPower.setText("Powered Up Turns: " + ((Dasher)game.getPlayer()).getMomentumTurns());
+        } else playerPower.setText("Powered Up Turns: " + 0);
         opponentShield.setVisible(game.getOpponent().isShielded());
         opponentFreeze.setVisible(game.getOpponent().isFrozen());
         opponentConfusion.setVisible(game.getOpponent().isConfused());
-
-        playerActivateButton.setDisable(game.getCurrent() != game.getPlayer() || playerPowerupUsed);
-        opponentActivateButton.setDisable(game.getCurrent() != game.getOpponent() || opponentPowerupUsed);
+        opponentConfusionTurns.setVisible(opponentConfusion.isVisible());
+        opponentConfusionTurns.setText("" + game.getOpponent().getConfusionTurns());
+        if(game.getOpponent() instanceof MultiTasker) {
+            opponentPower.setText("Powered Up Turns: " + ((MultiTasker)game.getOpponent()).getNormalSpeedTurns());
+        } else if(game.getOpponent() instanceof Dasher) {
+            opponentPower.setText("Powered Up Turns: " + ((Dasher)game.getOpponent()).getMomentumTurns());
+        } else opponentPower.setText("Powered Up Turns: " + 0);
 
         if (game.getWinner() != null) {
             try {
@@ -167,7 +186,8 @@ public class GameController {
             StackPane cell = (StackPane) getCell(pos[0], pos[1]);
             for(Node n :  cell.getChildren()) {
                 if(n instanceof ImageView && n != person && playableCharacter.getPosition() != 99) {
-                    ((ImageView) n).setImage(new Image(getClass().getResourceAsStream("/game/view/assets/door-closed.png")));
+                    if(((ImageView) n).getImage().getUrl().contains("other")) ((ImageView) n).setImage(new Image(getClass().getResourceAsStream("/game/view/assets/other-door-closed.png")));
+                    else ((ImageView) n).setImage(new Image(getClass().getResourceAsStream("/game/view/assets/door-closed.png")));
                 }
             }
         }
@@ -260,49 +280,39 @@ public class GameController {
     }
 
     private void initMonsterCells() {
-        for (Node node : board.getChildren()) {
-            if (node instanceof StackPane cell) {
-                if (cell.getStyleClass().contains("monster")) {
-                    int row = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
-                    int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
-                    int pos = coordsToInt(row, col);
-
-                    for (Monster m : Board.getStationedMonsters()) {
-                        if (m.getPosition() == pos) {
-                            Image img = switch (m.getName()) {
-                                case "James P. Sullivan"   -> IMG_SULLIVAN;
-                                case "Mike Wazowski"       -> IMG_WAZOWSKI;
-                                case "Randall Boggs"       -> IMG_RANDALL;
-                                case "Celia Mae"           -> IMG_CELIA;
-                                case "Roz"                 -> IMG_ROZ;
-                                case "Fungus"              -> IMG_FUNGUS;
-                                case "Henry J. Waternoose" -> IMG_WATERNOOSE;
-                                case "Yeti"                -> IMG_YETI;
-                                default                    -> null;
-                            };
-
-                            if (img != null) {
-                                ImageView iv = new ImageView(img);
-                                iv.setFitWidth(40);
-                                iv.setFitHeight(55);
-                                iv.setPreserveRatio(true);
-                                StackPane.setAlignment(iv, CENTER);
-                                cell.getChildren().add(iv);
-                            }
-
-                            Label nameLabel = new Label(m.getName());
-                            nameLabel.setStyle(
-                                "-fx-font-size: 9px; -fx-text-fill: white; " +
-                                "-fx-background-color: rgba(0,0,0,0.6); " +
-                                "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
-                            );
-                            StackPane.setAlignment(nameLabel, BOTTOM_CENTER);
-                            cell.getChildren().add(nameLabel);
-                            break;
-                        }
-                    }
-                }
+        for(int i = 0; i < Constants.MONSTER_CELL_INDICES.length; i++) {
+            int[] cords = intToCoords(Constants.MONSTER_CELL_INDICES[i]);
+            StackPane cell = (StackPane) getCell(cords[0], cords[1]);
+            Monster m = Board.getStationedMonsters().get(i);
+            Image img = switch (m.getName()) {
+                case "James P. Sullivan"   -> IMG_SULLIVAN;
+                case "Mike Wazowski"       -> IMG_WAZOWSKI;
+                case "Randall Boggs"       -> IMG_RANDALL;
+                case "Celia Mae"           -> IMG_CELIA;
+                case "Roz"                 -> IMG_ROZ;
+                case "Fungus"              -> IMG_FUNGUS;
+                case "Henry J. Waternoose" -> IMG_WATERNOOSE;
+                case "Yeti"                -> IMG_YETI;
+                default                    -> null;
+            };
+            if (img != null) {
+                ImageView iv = new ImageView(img);
+                iv.setFitWidth(40);
+                iv.setFitHeight(55);
+                iv.setPreserveRatio(true);
+                StackPane.setAlignment(iv, CENTER);
+                cell.getChildren().add(iv);
             }
+            Label nameLabel = new Label(m.getName());
+                nameLabel.setStyle(
+                    "-fx-font-size: 9px; -fx-text-fill: white; " +
+                    "-fx-background-color: rgba(0,0,0,0.6); " +
+                    "-fx-padding: 2 4 2 4; -fx-background-radius: 4;"
+            );
+            StackPane.setAlignment(nameLabel, BOTTOM_CENTER);
+            cell.getChildren().add(nameLabel);
+            cell.getStyleClass().clear();
+            cell.getStyleClass().add(m.getRole() == Role.LAUGHER ? "laugher-monster" : "scarer-monster");
         }
     }
 
@@ -353,7 +363,6 @@ public class GameController {
                 throw new InvalidTurnException();
             }
             game.usePowerup();
-            playerPowerupUsed = true;
             updateUI(new TurnResult(0, null, false, false));
             playerActivateButton.setDisable(true);
         } catch (OutOfEnergyException e) {
@@ -370,7 +379,6 @@ public class GameController {
                 throw new InvalidTurnException();
             }
             game.usePowerup();
-            opponentPowerupUsed = true;
             updateUI(new TurnResult(0, null, false, false));
             opponentActivateButton.setDisable(true);
         } catch (OutOfEnergyException e) {
@@ -387,7 +395,6 @@ public class GameController {
                 throw new InvalidTurnException();
             }
             TurnResult turnResult = game.playTurn();
-            playerPowerupUsed = false;
             updateUI(turnResult);
             playerActivateButton.setDisable(false);
         } catch (InvalidMoveException e) {
@@ -404,7 +411,6 @@ public class GameController {
                 throw new InvalidTurnException();
             }
             TurnResult turnResult = game.playTurn();
-            opponentPowerupUsed = false;
             updateUI(turnResult);
             opponentActivateButton.setDisable(false);
         } catch (InvalidMoveException e) {

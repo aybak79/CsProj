@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -16,8 +17,7 @@ public class StartScreenController {
 
     @FXML private Pane root;
     @FXML private Label title;
-    @FXML private Button singleplayer;
-    @FXML private Button multiplayer;
+    @FXML private Button start;
     @FXML private Button instructions;
     @FXML private Button options;
     @FXML private Button exit;
@@ -28,6 +28,8 @@ public class StartScreenController {
     
     @FXML
     public void initialize() {
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
         Font.loadFont(getClass().getResourceAsStream("/game/view/fonts/RussoOne.ttf"), 50);
         Rectangle2D screen = Screen.getPrimary().getBounds();
         width = screen.getWidth();
@@ -53,13 +55,8 @@ public class StartScreenController {
         return height * percentY; 
     }
    @FXML
-    private void handleSingleStart() throws Exception {
+    private void handleStart() throws Exception {
         loadScene("/game/view/views/ChooseView.fxml", "Choose Your Role");
-    }
-
-    @FXML
-    private void handleMultiStart() throws Exception {
-        loadScene("/game/view/views/ChooseView.fxml", "Choose");
     }
 
     @FXML

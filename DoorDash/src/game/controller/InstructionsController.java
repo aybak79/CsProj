@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -19,6 +20,8 @@ public class InstructionsController {
 
     @FXML
     public void initialize() {
+        root.getStyleClass().clear();
+        root.getStyleClass().add(Main.preferedTheme);
         Rectangle2D screen = Screen.getPrimary().getBounds();
         width = screen.getWidth();
         height = screen.getHeight();

@@ -8,32 +8,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="root" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameOverController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="midnight-theme" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameOverController">
    <children>
       <VBox fx:id="buttons" layoutX="523.0" layoutY="226.0" prefHeight="630.0" prefWidth="875.0" style="-fx-spacing: 50;">
          <children>
       
             <!-- trophy -->
-            <Label alignment="CENTER" prefHeight="70.0" prefWidth="875.0" styleClass="label" text="🏆">
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="875.0" styleClass="something" text="🏆">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
       
             <!-- title -->
-            <Label alignment="CENTER" prefHeight="75.0" prefWidth="875.0" text="Game Over">
+            <Label alignment="CENTER" prefHeight="75.0" prefWidth="875.0" styleClass="something" text="Game Over">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
       
             <!-- subtitle -->
-            <Label alignment="CENTER" prefWidth="875.0" styleClass="label" text="The winner has been crowned">
+            <Label alignment="CENTER" prefWidth="875.0" styleClass="something" text="The winner has been crowned">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="winner" alignment="CENTER" prefHeight="20.0" prefWidth="875.0" text="MonsterName">
+            <Label fx:id="winner" alignment="CENTER" prefHeight="20.0" prefWidth="875.0" styleClass="something" text="MonsterName">
                <font>
                   <Font size="28.0" />
                </font>
@@ -82,7 +82,7 @@
             </HBox>
       
             <!-- back button -->
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBack" prefHeight="70.0" prefWidth="630.0" styleClass="button" text="Go Back to Start">
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#handleBack" prefHeight="70.0" prefWidth="630.0" styleClass="button" text="Go Back to Start">
                <VBox.margin>
                   <Insets left="122.5" />
                </VBox.margin>
