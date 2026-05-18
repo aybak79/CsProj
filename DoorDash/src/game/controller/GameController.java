@@ -79,6 +79,8 @@ public class GameController {
     private static final Image IMG_YETI     = new Image(GameController.class.getResourceAsStream("/game/view/assets/Yeti.png"));
     private int prevPlayerEnergy;
     private int prevOpponentEnergy;
+    private boolean playerPowerupUsed = false;
+    private boolean opponentPowerupUsed = false;
 
     @FXML
     public void initialize() {
@@ -115,6 +117,9 @@ public class GameController {
         opponentShield.setVisible(game.getOpponent().isShielded());
         opponentFreeze.setVisible(game.getOpponent().isFrozen());
         opponentConfusion.setVisible(game.getOpponent().isConfused());
+
+        playerActivateButton.setDisable(game.getCurrent() != game.getPlayer() || playerPowerupUsed);
+        opponentActivateButton.setDisable(game.getCurrent() != game.getOpponent() || opponentPowerupUsed);
 
         if (game.getWinner() != null) {
             try {
@@ -198,6 +203,7 @@ public class GameController {
         int col = (row % 2 == 0) ? gridCol : (9 - gridCol);
         return row * 10 + col;
     }
+
     private void showEnergyChange(Monster monster, int oldEnergy) {
         int delta = monster.getEnergy() - oldEnergy;
         if (delta == 0) return;
@@ -206,7 +212,6 @@ public class GameController {
         StackPane cell = (StackPane) getCell(coords[0], coords[1]);
         if (cell == null) return;
 
-        // Get the cell's position in screen coordinates
         javafx.geometry.Bounds bounds = cell.localToScene(cell.getBoundsInLocal());
 
         String sign = delta > 0 ? "+" : "";
@@ -221,13 +226,10 @@ public class GameController {
         indicator.setLayoutX(bounds.getMinX() + bounds.getWidth() / 2 - 20);
         indicator.setLayoutY(bounds.getMinY() - 20);
 
-        // Add to the root pane so it floats above everything
         Pane root = (Pane) main.getScene().getRoot();
         root.getChildren().add(indicator);
 
-       FadeTransition ft = new FadeTransition(
-            Duration.seconds(3.0), indicator
-        );
+        FadeTransition ft = new FadeTransition(Duration.seconds(3.0), indicator);
         ft.setFromValue(1.0);
         ft.setToValue(0.0);
         ft.setOnFinished(e -> root.getChildren().remove(indicator));
@@ -245,15 +247,15 @@ public class GameController {
                     for (Monster m : Board.getStationedMonsters()) {
                         if (m.getPosition() == pos) {
                             Image img = switch (m.getName()) {
-                            case "James P. Sullivan"    -> IMG_SULLIVAN;
-                            case "Mike Wazowski"        -> IMG_WAZOWSKI;
-                            case "Randall Boggs"        -> IMG_RANDALL;
-                            case "Celia Mae"            -> IMG_CELIA;
-                            case "Roz"                  -> IMG_ROZ;
-                            case "Fungus"               -> IMG_FUNGUS;
-                            case "Henry J. Waternoose"  -> IMG_WATERNOOSE;
-                            case "Yeti"                 -> IMG_YETI;
-                            default                     -> null;
+                                case "James P. Sullivan"   -> IMG_SULLIVAN;
+                                case "Mike Wazowski"       -> IMG_WAZOWSKI;
+                                case "Randall Boggs"       -> IMG_RANDALL;
+                                case "Celia Mae"           -> IMG_CELIA;
+                                case "Roz"                 -> IMG_ROZ;
+                                case "Fungus"              -> IMG_FUNGUS;
+                                case "Henry J. Waternoose" -> IMG_WATERNOOSE;
+                                case "Yeti"                -> IMG_YETI;
+                                default                    -> null;
                             };
 
                             if (img != null) {
@@ -279,7 +281,7 @@ public class GameController {
                 }
             }
         }
-    } 
+    }
 
     private void initDoorCells() {
         for (Node node : board.getChildren()) {
@@ -288,13 +290,12 @@ public class GameController {
                 int col = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
                 int pos = coordsToInt(row, col);
 
-                // Get the actual cell from the board
                 int boardRow = pos / 10;
                 int boardCol = (boardRow % 2 == 0) ? pos % 10 : 9 - (pos % 10);
                 Cell boardCell = game.getBoard().getBoardCells()[boardRow][boardCol];
 
                 if (boardCell instanceof DoorCell door) {
-                    Label energyLabel = new Label( "" + door.getEnergy());
+                    Label energyLabel = new Label("" + door.getEnergy());
                     energyLabel.setStyle(
                         "-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: " +
                         (door.getEnergy() > 0 ? "white" : "red") + "; " +
@@ -325,10 +326,11 @@ public class GameController {
    @FXML
     private void handlePlayerPowerup(ActionEvent event) throws Exception {
         try {
-            if(game.getCurrent() != game.getPlayer()) {
+            if (game.getCurrent() != game.getPlayer()) {
                 throw new InvalidTurnException();
             }
             game.usePowerup();
+            playerPowerupUsed = true;
             updateUI(new TurnResult(0, null, false, false));
             playerActivateButton.setDisable(true);
         } catch (OutOfEnergyException e) {
@@ -341,10 +343,11 @@ public class GameController {
     @FXML
     private void handleOpponentPowerup(ActionEvent event) throws Exception {
         try {
-            if(game.getCurrent() != game.getOpponent()) {
+            if (game.getCurrent() != game.getOpponent()) {
                 throw new InvalidTurnException();
             }
             game.usePowerup();
+            opponentPowerupUsed = true;
             updateUI(new TurnResult(0, null, false, false));
             opponentActivateButton.setDisable(true);
         } catch (OutOfEnergyException e) {
@@ -357,10 +360,11 @@ public class GameController {
     @FXML
     private void handlePlayerRoll(ActionEvent event) throws Exception {
         try {
-            if(game.getCurrent() != game.getPlayer()) {
+            if (game.getCurrent() != game.getPlayer()) {
                 throw new InvalidTurnException();
             }
             TurnResult turnResult = game.playTurn();
+            playerPowerupUsed = false;
             updateUI(turnResult);
             playerActivateButton.setDisable(false);
         } catch (InvalidMoveException e) {
@@ -369,13 +373,15 @@ public class GameController {
             showError("It's not your turn!", "Invalid Turn");
         }
     }
+
     @FXML
     private void handleOpponentRoll(ActionEvent event) throws Exception {
         try {
-            if(game.getCurrent() != game.getOpponent()) {
+            if (game.getCurrent() != game.getOpponent()) {
                 throw new InvalidTurnException();
             }
             TurnResult turnResult = game.playTurn();
+            opponentPowerupUsed = false;
             updateUI(turnResult);
             opponentActivateButton.setDisable(false);
         } catch (InvalidMoveException e) {
