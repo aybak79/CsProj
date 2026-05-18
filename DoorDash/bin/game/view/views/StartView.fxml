@@ -7,32 +7,32 @@
 
 <Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.StartScreenController">
    <children>
-      <Label layoutX="436.0" layoutY="104.0" prefHeight="312.0" prefWidth="1175.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Door Dash">
+      <Label fx:id="title" alignment="CENTER" layoutX="373.0" layoutY="127.0" prefHeight="312.0" prefWidth="1175.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Door Dash">
          <font>
             <Font size="150.0" />
          </font>
       </Label>
-      <Button fx:id="singleplayer" focusTraversable="false" layoutX="435.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleSingleStart" prefHeight="95.0" prefWidth="799.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Singleplayer">
+      <Button fx:id="singleplayer" focusTraversable="false" layoutX="561.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleSingleStart" prefHeight="95.0" prefWidth="799.0" stylesheets="@../styles/style.css" text="Singleplayer">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="options" focusTraversable="false" layoutX="436.0" layoutY="787.0" mnemonicParsing="false" onAction="#handleOptions" prefHeight="95.0" prefWidth="798.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Options">
+      <Button fx:id="options" focusTraversable="false" layoutX="561.0" layoutY="784.0" mnemonicParsing="false" onAction="#handleOptions" prefHeight="95.0" prefWidth="798.0" stylesheets="@../styles/style.css" text="Options">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="exit" focusTraversable="false" layoutX="436.0" layoutY="895.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="95.0" prefWidth="798.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Exit Game">
+      <Button fx:id="exit" focusTraversable="false" layoutX="561.0" layoutY="895.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="95.0" prefWidth="798.0" stylesheets="@../styles/style.css" text="Exit Game">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="multiplayer" focusTraversable="false" layoutX="436.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleMultiStart" prefHeight="94.0" prefWidth="797.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Multiplayer">
+      <Button fx:id="multiplayer" focusTraversable="false" layoutX="562.0" layoutY="563.0" mnemonicParsing="false" onAction="#handleMultiStart" prefHeight="94.0" prefWidth="797.0" stylesheets="@../styles/style.css" text="Multiplayer">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="instructions" focusTraversable="false" layoutX="436.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleInstructions" prefHeight="93.0" prefWidth="797.0" styleClass="fonted-label" stylesheets="@../styles/style.css" text="Instructions">
+      <Button fx:id="instructions" focusTraversable="false" layoutX="562.0" layoutY="672.0" mnemonicParsing="false" onAction="#handleInstructions" prefHeight="93.0" prefWidth="797.0" stylesheets="@../styles/style.css" text="Instructions">
          <font>
             <Font size="20.0" />
          </font>

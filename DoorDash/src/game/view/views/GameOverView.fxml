@@ -5,35 +5,65 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="749.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameOverController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="root" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameOverController">
    <children>
-      <Label layoutX="275.0" layoutY="28.0" text="Game Over">
-         <font>
-            <Font size="40.0" />
-         </font>
+
+      <!-- trophy -->
+      <Label layoutX="936.0" layoutY="125.0" styleClass="label" text="🏆">
+         <font><Font size="48.0" /></font>
       </Label>
-      <Label layoutX="61.0" layoutY="108.0" text="The Winning Monster is">
-         <font>
-            <Font size="25.0" />
-         </font>
+
+      <!-- title -->
+      <Label layoutX="824.0" layoutY="195.0" text="Game Over">
+         <font><Font size="52.0" /></font>
       </Label>
-      <Button layoutX="308.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleBack" text="Go Back to Start" />
-      <Label layoutX="80.0" layoutY="247.0" text="Player Final Energy">
-         <font>
-            <Font size="16.0" />
-         </font>
+
+      <!-- subtitle -->
+      <Label layoutX="861.0" layoutY="293.0" styleClass="label" text="The winner has been crowned">
+         <font><Font size="14.0" /></font>
       </Label>
-      <Label layoutX="541.0" layoutY="247.0" text="Opponent Final Energy">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="playerFinalEnergy" layoutX="116.0" layoutY="292.0" text="Label" />
-      <Label fx:id="opponentFinalEnergy" layoutX="588.0" layoutY="284.0" text="Label" />
-      <Label fx:id="winner" layoutX="360.0" layoutY="165.0" text="Label">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+
+      <!-- winner card -->
+      <Pane layoutX="760.0" layoutY="342.0" prefHeight="90.0" prefWidth="400.0" styleClass="player-display">
+         <Label alignment="CENTER" layoutY="14.0" prefWidth="400.0" styleClass="label" text="WINNER" textAlignment="CENTER">
+            <font><Font size="12.0" /></font>
+         </Label>
+         <Label fx:id="winner" alignment="CENTER" layoutY="35.0" prefWidth="400.0" text="MonsterName">
+            <font>
+               <Font size="28.0" />
+            </font>
+         </Label>
+      </Pane>
+
+      <!-- player energy card -->
+      <Pane layoutX="434.0" layoutY="494.0" prefHeight="216.0" prefWidth="424.0" styleClass="player-display">
+         <Label alignment="CENTER" layoutY="14.0" prefHeight="20.0" prefWidth="424.0" styleClass="label" text="FINAL ENERGY">
+            <font><Font size="25.0" /></font>
+         </Label>
+         <Label alignment="CENTER" layoutY="73.0" prefHeight="20.0" prefWidth="424.0" styleClass="label" text="Player">
+            <font><Font size="13.0" /></font>
+         </Label>
+         <Label fx:id="playerFinalEnergy" alignment="CENTER" layoutY="108.0" prefHeight="20.0" prefWidth="424.0" text="0">
+            <font><Font size="36.0" /></font>
+         </Label>
+      </Pane>
+
+      <!-- opponent energy card -->
+      <Pane layoutX="1062.0" layoutY="494.0" prefHeight="216.0" prefWidth="424.0" styleClass="player-display">
+         <Label alignment="CENTER" layoutY="14.0" prefHeight="20.0" prefWidth="424.0" styleClass="label" text="FINAL ENERGY">
+            <font><Font size="11.0" /></font>
+         </Label>
+         <Label alignment="CENTER" layoutY="76.0" prefHeight="20.0" prefWidth="424.0" styleClass="label" text="Opponent">
+            <font><Font size="13.0" /></font>
+         </Label>
+         <Label fx:id="opponentFinalEnergy" alignment="CENTER" layoutY="108.0" prefHeight="20.0" prefWidth="424.0" text="0">
+            <font><Font size="36.0" /></font>
+         </Label>
+      </Pane>
+
+      <!-- back button -->
+      <Button fx:id="backButton" layoutX="646.0" layoutY="845.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="70.0" prefWidth="628.0" styleClass="button" text="Go Back to Start">
+      </Button>
+
    </children>
 </Pane>

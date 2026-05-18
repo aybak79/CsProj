@@ -24,7 +24,10 @@ public class GameOverController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/StartView.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) winner.getScene().getWindow();
+            stage.setTitle("Main Menu");
             stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.setFullScreenExitHint("");
         } catch (Exception e) {
             e.printStackTrace();
         }

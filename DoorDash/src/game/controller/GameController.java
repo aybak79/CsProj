@@ -121,7 +121,10 @@ public class GameController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/game/view/views/GameOverView.fxml"));
                 Scene scene = new Scene(loader.load());
                 Stage stage = (Stage) main.getScene().getWindow();
+                stage.setTitle("Game Over");
                 stage.setScene(scene);
+                stage.setFullScreen(true);
+                stage.setFullScreenExitHint("");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -327,8 +330,9 @@ public class GameController {
             }
             game.usePowerup();
             updateUI(new TurnResult(0, null, false, false));
+            playerActivateButton.setDisable(true);
         } catch (OutOfEnergyException e) {
-            showError("Not enough Energy!", "You Cannot Use This Powerup");
+            showError(e.getMessage(), "Out Of Energy!");
         } catch (InvalidTurnException e) {
             showError("It's not your turn!", "Invalid Turn");
         }
@@ -342,8 +346,9 @@ public class GameController {
             }
             game.usePowerup();
             updateUI(new TurnResult(0, null, false, false));
+            opponentActivateButton.setDisable(true);
         } catch (OutOfEnergyException e) {
-            showError("Not enough Energy!", "You Cannot Use This Powerup");
+            showError(e.getMessage(), "Out Of Energy");
         } catch (InvalidTurnException e) {
             showError("It's not your turn!", "Invalid Turn");
         }
@@ -357,8 +362,9 @@ public class GameController {
             }
             TurnResult turnResult = game.playTurn();
             updateUI(turnResult);
+            playerActivateButton.setDisable(false);
         } catch (InvalidMoveException e) {
-            showError("Invalid Move!", "You cannot perform this action");
+            showError(e.getMessage(), "Invalid Move");
         } catch (InvalidTurnException e) {
             showError("It's not your turn!", "Invalid Turn");
         }
@@ -371,8 +377,9 @@ public class GameController {
             }
             TurnResult turnResult = game.playTurn();
             updateUI(turnResult);
+            opponentActivateButton.setDisable(false);
         } catch (InvalidMoveException e) {
-            showError("Invalid Move!", "You cannot perform this action");
+            showError(e.getMessage(), "Invalid Move");
         } catch (InvalidTurnException e) {
             showError("It's not your turn!", "Invalid Turn");
         }

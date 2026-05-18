@@ -135,11 +135,6 @@
     -fx-background-color: #2F6FDB;
 }
 
-.player-display .button:pressed {
-    -fx-background-color: #1F56C2;
-    -fx-translate-y: 1px;
-}
-
 .error {
     -fx-background-color: #2B1E24;
 
