@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -65,6 +64,10 @@ public class GameController {
     @FXML private VBox cardPanel;
     @FXML private Label cardType;
     @FXML private Pane main;
+    @FXML private Pane errorOverlay;
+    @FXML private Label errorMessage;
+    @FXML private Button closeErrorButton;
+    @FXML private Label errorMessageTitle;
 
     private static final Image IMG_SULLIVAN = new Image(GameController.class.getResourceAsStream("/game/view/assets/Sullivan.png"));
     private static final Image IMG_WAZOWSKI = new Image(GameController.class.getResourceAsStream("/game/view/assets/Wazowski.png"));
@@ -82,6 +85,9 @@ public class GameController {
     @FXML
     public void initialize() {
         main.requestFocus();
+        errorOverlay.setVisible(false);
+        errorOverlay.setLayoutX(650);
+        errorOverlay.setLayoutY(400);
         playerORole.setText(game.getPlayer().getOriginalRole().toString());
         playerType.setText(game.getPlayer().getClass().getSimpleName());
         playerName.setText(game.getPlayer().getName());
@@ -300,7 +306,21 @@ public class GameController {
         }
     }
 
+    private void showError(String message, String title) {
+        errorMessage.setText(message);
+        errorMessageTitle.setText(title);
+        errorOverlay.setVisible(true);
+        errorOverlay.toFront();
+        main.setDisable(true);
+    }
+
     @FXML
+    private void handleCloseError() {
+        errorOverlay.setVisible(false);
+        main.setDisable(false);
+    }
+    
+   @FXML
     private void handlePlayerPowerup(ActionEvent event) throws Exception {
         try {
             if (game.getCurrent() != game.getPlayer()) {
@@ -310,17 +330,9 @@ public class GameController {
             playerPowerupUsed = true;
             updateUI(new TurnResult(0, null, false, false));
         } catch (OutOfEnergyException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Not Enough Energy");
-            alert.setHeaderText("You cannot use this powerup");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("Not enough Energy!", "You Cannot Use This Powerup");
         } catch (InvalidTurnException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Turn");
-            alert.setHeaderText("It's not your turn!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("It's not your turn!", "Invalid Turn");
         }
     }
 
@@ -334,17 +346,9 @@ public class GameController {
             opponentPowerupUsed = true;
             updateUI(new TurnResult(0, null, false, false));
         } catch (OutOfEnergyException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Not Enough Energy");
-            alert.setHeaderText("You cannot use this powerup");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("Not enough Energy!", "You Cannot Use This Powerup");
         } catch (InvalidTurnException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Turn");
-            alert.setHeaderText("It's not your turn!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("It's not your turn!", "Invalid Turn");
         }
     }
 
@@ -358,17 +362,9 @@ public class GameController {
             playerPowerupUsed = false;
             updateUI(turnResult);
         } catch (InvalidMoveException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Move");
-            alert.setHeaderText("You cannot perform this action");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("Invalid Move!", "You cannot perform this action");
         } catch (InvalidTurnException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Turn");
-            alert.setHeaderText("It's not your turn!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("It's not your turn!", "Invalid Turn");
         }
     }
 
@@ -382,17 +378,9 @@ public class GameController {
             opponentPowerupUsed = false;
             updateUI(turnResult);
         } catch (InvalidMoveException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Move");
-            alert.setHeaderText("You cannot perform this action");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("Invalid Move!", "You cannot perform this action");
         } catch (InvalidTurnException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Turn");
-            alert.setHeaderText("It's not your turn!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showError("It's not your turn!", "Invalid Turn");
         }
     }
 

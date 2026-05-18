@@ -4,13 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class StartScreenController {
 
-    @FXML private AnchorPane root;
+    @FXML private Pane root;
     @FXML private Button singleplayer;
     @FXML private Button multiplayer;
     @FXML private Button instructions;
