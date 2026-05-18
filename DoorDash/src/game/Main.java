@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static MediaPlayer mediaPlayer;
-    public static String preferedTheme = "midnight-theme";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
