@@ -36,6 +36,9 @@ import static javafx.geometry.Pos.*;
 import game.engine.cells.*;
 import javafx.animation.*;
 import javafx.util.Duration;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import javafx.application.Platform;
 
 public class GameController {
     static Game game;
@@ -105,6 +108,47 @@ public class GameController {
         root.setPrefWidth(width);
         root.setPrefHeight(height);
         layoutAll();
+        Label gameLog = new Label("");
+        gameLog.getStyleClass().add("game-log");
+        gameLog.setPrefWidth(Label.USE_COMPUTED_SIZE);
+        gameLog.setLayoutY(main.getLayoutY() + main.getPrefHeight() + 10);
+        gameLog.setLayoutX(main.getLayoutX() + (main.getPrefWidth() / 2) - (gameLog.getWidth() / 2));
+        root.getChildren().add(gameLog);
+
+        FadeTransition[] currentFade = {null};
+        PrintStream logStream = new PrintStream(new OutputStream() {
+            @Override
+            public void write(byte[] b, int off, int len) {
+                String text = new String(b, off, len).trim();
+                if (text.isEmpty()) return;
+                Platform.runLater(() -> {
+                    if (currentFade[0] != null) currentFade[0].stop();
+                    gameLog.setOpacity(1.0);
+                    gameLog.setText(text);
+                    gameLog.setLayoutY(main.getLayoutY() + main.getPrefHeight() + 10);
+                    gameLog.widthProperty().addListener(new javafx.beans.value.ChangeListener<Number>() {
+                        @Override
+                        public void changed(javafx.beans.value.ObservableValue<? extends Number> obs, Number oldVal, Number newVal) {
+                            gameLog.setLayoutX(main.getLayoutX() + (main.getPrefWidth() / 2) - (newVal.doubleValue() / 2));
+                            gameLog.widthProperty().removeListener(this);
+                        }
+                    });
+                    FadeTransition ft = new FadeTransition(Duration.seconds(1.5), gameLog);
+                    ft.setDelay(Duration.seconds(2.0));
+                    ft.setFromValue(1.0);
+                    ft.setToValue(0.0);
+                    ft.play();
+                    currentFade[0] = ft;
+                });
+            }
+            @Override
+            public void write(int b) {
+                write(new byte[]{(byte) b}, 0, 1);
+            }
+        });
+        System.setOut(logStream);
+
+    
         playerORole.setText(game.getPlayer().getOriginalRole().toString());
         playerType.setText(game.getPlayer().getClass().getSimpleName());
         playerName.setText(game.getPlayer().getName());
@@ -116,7 +160,8 @@ public class GameController {
         updateUI(new TurnResult(0, null, false, false));
         prevPlayerEnergy = game.getPlayer().getEnergy();
         prevOpponentEnergy = game.getOpponent().getEnergy();
-    }
+        
+    }   
     private void layoutAll() {
         main.setLayoutX(x(0.1143));
         main.setLayoutY(y(0.097));
